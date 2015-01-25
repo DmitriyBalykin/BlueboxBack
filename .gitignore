@@ -26,8 +26,7 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must end with two \r
-Icon
-
+Icon
 # Thumbnails
 ._*
 
@@ -41,3 +40,10 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+*.exe
+*.Cache
+BlueboxBack/obj/Debug/*.*
+BlueboxBack/obj/Release/*.*
+BlueboxBack/bin/Debug/*.*
+BlueboxBack/bin/Release/*.*
