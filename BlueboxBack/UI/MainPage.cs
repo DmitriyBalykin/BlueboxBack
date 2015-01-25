@@ -14,5 +14,10 @@ namespace BlueboxBack.UI
         {
             InitializeComponent();
         }
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
