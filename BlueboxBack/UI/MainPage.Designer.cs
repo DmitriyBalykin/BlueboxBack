@@ -35,7 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(592, 573);
-            this.Name = "Form1";
+            this.Name = "MainPage";
             this.Text = "BluboxBack";
             this.ResumeLayout(false);
 
