@@ -1,4 +1,5 @@
-﻿using BlueboxBack.UI.Components;
+﻿using BlueboxBack.Core;
+using BlueboxBack.UI.Components;
 using BlueboxBack.Utilities;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,9 @@ namespace BlueboxBack.UI
 {
     public partial class MainPage : Form
     {
-        MatrixCalc calc = new MatrixCalc();
+        MatrixCalc calc;
+        DataHandler dataHandler;
+
         public MainPage()
         {
             InitializeComponent();
@@ -21,11 +24,12 @@ namespace BlueboxBack.UI
 
         private void Initialize()
         {
-            calc = new MatrixCalc();
+            calc = new MatrixCalc(new Matrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT));
+            dataHandler = new DataHandler(calc);
 
-            Box leftHeaderBox = new Box(Boxs.HeaderVertical, calc);
-            Box topHeaderBox = new Box(Boxs.HeaderHorizontal, calc);
-            Box gridBox = new Box(Boxs.Grid, calc);
+            Box leftHeaderBox = new Box(BoxTypes.HeaderVertical, dataHandler, Constants.MATRIX_HEIGHT * Constants.CELL_SIDE);
+            Box topHeaderBox = new Box(BoxTypes.HeaderHorizontal, dataHandler, Constants.MATRIX_WIDTH * Constants.CELL_SIDE);
+            Box gridBox = new Box(BoxTypes.Grid, dataHandler, Constants.MATRIX_WIDTH * Constants.CELL_SIDE, Constants.MATRIX_HEIGHT * Constants.CELL_SIDE);
 
             layoutPanel.Controls.Add(topHeaderBox, 1, 0);
             layoutPanel.Controls.Add(leftHeaderBox, 0, 1);

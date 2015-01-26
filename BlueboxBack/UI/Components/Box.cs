@@ -1,4 +1,5 @@
-﻿using BlueboxBack.Utilities;
+﻿using BlueboxBack.Core;
+using BlueboxBack.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,20 +9,43 @@ namespace BlueboxBack.UI.Components
 {
     class Box : PictureBox
     {
-        MatrixCalc calc;
-        Boxs type;
-        public Box(Boxs type, MatrixCalc calc)
+        DataHandler dataHandler;
+        public BoxTypes type;
+        public Box(BoxTypes type, DataHandler dataHandler, int width, int height)
         {
-            InitializeBox(type, calc);
-
-            this.type = type;
-            this.calc = calc;
-
-            Click += Box_Click;
+            InitializeBox(type, dataHandler, width, height);
         }
 
-        private void InitializeBox(Boxs type, MatrixCalc calc)
+        public Box(BoxTypes boxType, DataHandler dataHandler, int actualSizing)
         {
+            switch (boxType)
+            { 
+                case BoxTypes.HeaderHorizontal:
+                    InitializeBox(type, dataHandler, actualSizing, Constants.HEADER_SIZING);
+                    break;
+                case BoxTypes.HeaderVertical:
+                    InitializeBox(type, dataHandler, Constants.HEADER_SIZING, actualSizing);
+                    break;
+            }
+        }
+
+        void dataHandler_DataUpdated(object sender, EventArgs e)
+        {
+            DataUpdatedEventArgs args = e as DataUpdatedEventArgs;
+            if(args != null)
+            {
+                GridDrawer.Draw(this, args.Data);
+            }
+        }
+
+        private void InitializeBox(BoxTypes type, DataHandler dataHandler, int width, int height)
+        {
+            this.type = type;
+            this.dataHandler = dataHandler;
+
+            Click += Box_Click;
+            dataHandler.DataUpdated += dataHandler_DataUpdated;
+
             throw new NotImplementedException();
         }
 
@@ -30,14 +54,8 @@ namespace BlueboxBack.UI.Components
             MouseEventArgs args = e as MouseEventArgs;
             if(args != null)
             {
-                calc.CalculateMatrix(args.X, args.Y, type);
-                updateBox(calc);
+                dataHandler.UpdateData(type, args.X, args.Y);
             }
-        }
-
-        private void updateBox(MatrixCalc calc)
-        {
-            GridDrawer
         }
     }
 }

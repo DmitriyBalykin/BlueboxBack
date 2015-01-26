@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BlueboxBack.UI.Components
 {
-    public enum Boxs
+    public enum BoxTypes
     {
         HeaderVertical,
         HeaderHorizontal,

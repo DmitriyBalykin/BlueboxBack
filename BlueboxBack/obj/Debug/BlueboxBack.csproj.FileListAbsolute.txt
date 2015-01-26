@@ -1,1 +1,8 @@
 H:\workspace\BlueboxBack\BlueboxBack\bin\Debug\BlueboxBack.exe.config
+H:\workspace\BlueboxBack\BlueboxBack\bin\Debug\BlueboxBack.exe
+H:\workspace\BlueboxBack\BlueboxBack\bin\Debug\BlueboxBack.pdb
+H:\workspace\BlueboxBack\BlueboxBack\obj\Debug\BlueboxBack.UI.MainPage.resources
+H:\workspace\BlueboxBack\BlueboxBack\obj\Debug\BlueboxBack.csproj.GenerateResource.Cache
+H:\workspace\BlueboxBack\BlueboxBack\obj\Debug\BlueboxBack.exe
+H:\workspace\BlueboxBack\BlueboxBack\obj\Debug\BlueboxBack.pdb
+H:\workspace\BlueboxBack\BlueboxBack\obj\Debug\BlueboxBack.csprojResolveAssemblyReference.cache

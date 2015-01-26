@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlueboxBack.Core;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -8,19 +9,12 @@ namespace BlueboxBack.Utilities
 {
     class GridDrawer
     {
-        Bitmap drawArea;
-        public GridDrawer(PictureBox pictureBox)
-        {
-            drawArea = new Bitmap(pictureBox.Size.Width, pictureBox.Size.Height);
-            pictureBox.Image = drawArea;
-        }
 
-        public void Draw(PictureBox pictureBox)
+        public static void Draw(PictureBox pictureBox, Matrix matrix)
         {
-            if(drawArea == null)
-            {
-                return;
-            }
+            Bitmap drawArea = new Bitmap(pictureBox.Size.Width, pictureBox.Size.Height);
+            pictureBox.Image = drawArea;
+
             Graphics g = Graphics.FromImage(drawArea);
 
             //TODO implement drawing

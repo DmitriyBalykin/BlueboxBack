@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="(@1 @10)" Category="CodeSchema_ProjectItem" Bounds="323.963550078106,38.3522954326519,146.888000077079,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/UI/MainPage.Designer.cs" Label="MainPage.Designer.cs" UseManualLocation="True" />
+    <Node Id="(@1 @11)" Category="CodeSchema_ProjectItem" Bounds="184.789049032701,142.86708999833,109.328000077079,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/Utilities/GridDrawer.cs" Label="GridDrawer.cs" />
+    <Node Id="(@1 @12)" Category="CodeSchema_ProjectItem" Bounds="717.979565036574,17.8670899983296,94.048000077079,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/UI/Components/Headers.cs" Label="Headers.cs" UseManualLocation="True" />
+    <Node Id="(@1 @13)" Category="CodeSchema_ProjectItem" Bounds="-144.839001564418,-45.97180754776,93.628000077079,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/Core/Element.cs" Label="Element.cs" UseManualLocation="True" />
+    <Node Id="(@1 @14)" Category="CodeSchema_ProjectItem" Bounds="-148.204452919399,-118.969907624839,84.168000077079,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/Core/Matrix.cs" Label="Matrix.cs" UseManualLocation="True" />
+    <Node Id="(@1 @15)" Category="CodeSchema_ProjectItem" Bounds="718.878382520193,-85.1329100016703,72.2180000770791,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/UI/Components/Box.cs" Label="Box.cs" UseManualLocation="True" />
+    <Node Id="(@1 @16)" Category="CodeSchema_ProjectItem" Bounds="500.851550155185,64.8650899272808,111.041333410412,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/UI/MainPage.resx" Label="MainPage.resx" UseManualLocation="True" />
+    <Node Id="(@1 @4)" Category="CodeSchema_ProjectItem" Bounds="527.491464235549,-405.846118314384,92.3646667437457,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/App.config" Label="App.config" UseManualLocation="True" />
+    <Node Id="(@1 @5)" Category="CodeSchema_ProjectItem" Bounds="19.6510488658794,146.051513127136,104.138000077079,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/Utilities/MatrixCalc.cs" Label="MatrixCalc.cs" UseManualLocation="True" />
+    <Node Id="(@1 @8)" Category="CodeSchema_ProjectItem" Bounds="-88.1437844547901,-217.642005660592,95.368000077079,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/Program.cs" Label="Program.cs" UseManualLocation="True" />
+    <Node Id="(@1 @9)" Category="CodeSchema_ProjectItem" Bounds="655.106282211877,-345.859139239785,119.544666743746,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/Properties/AssemblyInfo.cs" Label="AssemblyInfo.cs" UseManualLocation="True" />
+    <Node Id="(@3)" Category="CodeSchema_Solution" Bounds="159.820077186089,-364.581333715838,81.2333333333333,23.2766666666666" Label="BlueboxBack" UseManualLocation="True" />
+    <Node Id="@18" Category="ProjectFolder" Bounds="-9.05091763396533,-88.3022338680548,63.3313334104124,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/Core/" Label="Core" UseManualLocation="True">
+      <Category Ref="CodeSchema_ProjectItem" />
+    </Node>
+    <Node Id="@2" Category="CodeSchema_Project" Bounds="153.339121733782,-215.304567049171,102.23556651445,26.0022331811163" Label="BlueboxBack" UseManualLocation="True" />
+    <Node Id="@20" Category="ProjectFolder" Bounds="427.273849109781,-121.126910232908,52.3146667437456,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/UI/" Label="UI" UseManualLocation="True">
+      <Category Ref="CodeSchema_ProjectItem" />
+    </Node>
+    <Node Id="@22" Category="ProjectFolder" Bounds="109.885541078811,59.0534130500572,76.3246667437457,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/Utilities/" Label="Utilities" UseManualLocation="True">
+      <Category Ref="CodeSchema_ProjectItem" />
+    </Node>
+    <Node Id="@24" Category="ProjectFolder" Bounds="528.313600466018,-349.848018237305,89.7246667437457,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/Properties/" Label="Properties" UseManualLocation="True">
+      <Category Ref="CodeSchema_ProjectItem" />
+    </Node>
+    <Node Id="@26" Category="ProjectFolder" Bounds="565.03499918686,-45.1289101558285,101.514666743746,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/UI/Components/" Label="Components" UseManualLocation="True">
+      <Category Ref="CodeSchema_ProjectItem" />
+    </Node>
+    <Node Id="@7" Category="CodeSchema_ProjectItem" Bounds="394.116999109781,-48.1309100787494,100.918000077079,25.998000077079" FilePath="$(VsSolutionUri)/BlueboxBack/UI/MainPage.cs" Label="MainPage.cs" UseManualLocation="True" />
+  </Nodes>
+  <Links>
+    <Link Source="(@3)" Target="@2" Category="Contains" Bounds="200.747340526078,-341.304659830729,3.12250347057721,117.003294948009" />
+    <Link Source="@18" Target="(@1 @13)" Category="Contains" Bounds="-52.486066983664,-64.2583335812006,43.6233699307656,15.3066936233145" />
+    <Link Source="@18" Target="(@1 @14)" Category="Contains" Bounds="-55.2815645962445,-93.8599194151107,46.2306463689741,11.0132007416882" />
+    <Link Source="@2" Target="(@1 @4)" Category="Contains" Bounds="229.649199287068,-375.720691001939,310.838648140434,160.416122873295" />
+    <Link Source="@2" Target="(@1 @8)" Category="Contains" Bounds="16.223807800948,-204.101532494672,137.115318121515,1.30978260765323" />
+    <Link Source="@2" Target="@18" Category="Contains" Bounds="48.6056465928172,-189.302334947528,137.235931770531,95.8468246933589" />
+    <Link Source="@2" Target="@20" Category="Contains" Bounds="238.828291696452,-189.302334947528,180.027634893843,68.0961922214112" />
+    <Link Source="@2" Target="@22" Category="Contains" Bounds="152.533072068953,-189.302334947528,49.2507379288724,239.540152617261" />
+    <Link Source="@2" Target="@24" Category="Contains" Bounds="240.08616656512,-320.764907785464,289.011605996733,105.46033965682" />
+    <Link Source="@20" Target="@26" Category="Contains" Bounds="478.893946505509,-96.2092919808945,100.976257388273,47.2649557301959" />
+    <Link Source="@20" Target="@7" Category="Contains" Bounds="447.236759176105,-95.1289067607769,4.61749544232151,38.0634975026709" />
+    <Link Source="@22" Target="(@1 @11)" Category="Contains" Bounds="162.224270410506,85.0514131271362,56.4189281975376,51.7331521983919" />
+    <Link Source="@22" Target="(@1 @5)" Category="Contains" Bounds="89.0602706150221,85.0514139789692,47.5829246983775,54.2347954328622" />
+    <Link Source="@24" Target="(@1 @9)" Category="Contains" Bounds="618.038267209763,-335.586167039528,28.0715642072372,0.790206909247672" />
+    <Link Source="@26" Target="(@1 @12)" Category="Contains" Bounds="646.581510315844,-19.1309104305157,79.3415098847561,33.4974554769801" />
+    <Link Source="@26" Target="(@1 @15)" Category="Contains" Bounds="661.022697840817,-59.2770777786915,49.2289614430044,14.1481672710968" />
+    <Link Source="@7" Target="(@1 @10)" Category="Contains" Bounds="408.806664664861,-22.1329093318828,28.6796093107747,52.5839827138257" />
+    <Link Source="@7" Target="(@1 @16)" Category="Contains" Bounds="457.436981261578,-22.1329093318828,79.7443539489527,80.6001629001523" />
+  </Links>
+  <Categories>
+    <Category Id="CodeSchema_Project" Label="Project" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_ProjectItem" Icon="CodeSchema_Project" NavigationActionLabel="Projects" />
+    <Category Id="CodeSchema_ProjectItem" Label="Project Item" BasedOn="File" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Type" Icon="File" NavigationActionLabel="Project Items" />
+    <Category Id="CodeSchema_Solution" Label="Solution" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" NavigationActionLabel="Solutions" />
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+    <Category Id="File" Label="File" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="File" NavigationActionLabel="Files" />
+    <Category Id="ProjectFolder" Label="Project Folder" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Type" NavigationActionLabel="Folders" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="DefaultAction" Label="DefaultAction" Description="DefaultAction" DataType="System.String" />
+    <Property Id="FilePath" Label="File Path" Description="File Path" DataType="System.String" />
+    <Property Id="Icon" Label="Icon" Description="Icon" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+  </Properties>
+  <QualifiedNames>
+    <Name Id="Assembly" Label="Assembly" ValueType="Uri" />
+    <Name Id="File" Label="File" ValueType="Uri" />
+  </QualifiedNames>
+  <IdentifierAliases>
+    <Alias n="1" Uri="Assembly=$(VsSolutionUri)/BlueboxBack/BlueboxBack.csproj" />
+    <Alias n="2" Id="(@1)" />
+    <Alias n="3" Uri="Assembly=$(VsSolutionUri)/BlueboxBack.sln" />
+    <Alias n="4" Uri="File=$(VsSolutionUri)/BlueboxBack/App.config" />
+    <Alias n="5" Uri="File=$(VsSolutionUri)/BlueboxBack/Utilities/MatrixCalc.cs" />
+    <Alias n="6" Uri="File=$(VsSolutionUri)/BlueboxBack/UI/MainPage.cs" />
+    <Alias n="7" Id="(@1 @6)" />
+    <Alias n="8" Uri="File=$(VsSolutionUri)/BlueboxBack/Program.cs" />
+    <Alias n="9" Uri="File=$(VsSolutionUri)/BlueboxBack/Properties/AssemblyInfo.cs" />
+    <Alias n="10" Uri="File=$(VsSolutionUri)/BlueboxBack/UI/MainPage.Designer.cs" />
+    <Alias n="11" Uri="File=$(VsSolutionUri)/BlueboxBack/Utilities/GridDrawer.cs" />
+    <Alias n="12" Uri="File=$(VsSolutionUri)/BlueboxBack/UI/Components/Headers.cs" />
+    <Alias n="13" Uri="File=$(VsSolutionUri)/BlueboxBack/Core/Element.cs" />
+    <Alias n="14" Uri="File=$(VsSolutionUri)/BlueboxBack/Core/Matrix.cs" />
+    <Alias n="15" Uri="File=$(VsSolutionUri)/BlueboxBack/UI/Components/Box.cs" />
+    <Alias n="16" Uri="File=$(VsSolutionUri)/BlueboxBack/UI/MainPage.resx" />
+    <Alias n="17" Uri="File=$(VsSolutionUri)/BlueboxBack/Core/" />
+    <Alias n="18" Id="(@1 @17)" />
+    <Alias n="19" Uri="File=$(VsSolutionUri)/BlueboxBack/UI/" />
+    <Alias n="20" Id="(@1 @19)" />
+    <Alias n="21" Uri="File=$(VsSolutionUri)/BlueboxBack/Utilities/" />
+    <Alias n="22" Id="(@1 @21)" />
+    <Alias n="23" Uri="File=$(VsSolutionUri)/BlueboxBack/Properties/" />
+    <Alias n="24" Id="(@1 @23)" />
+    <Alias n="25" Uri="File=$(VsSolutionUri)/BlueboxBack/UI/Components/" />
+    <Alias n="26" Id="(@1 @25)" />
+  </IdentifierAliases>
+  <Paths>
+    <Path Id="VsSolutionUri" Value="file:///H:/workspace/BlueboxBack" />
+  </Paths>
+</DirectedGraph>
