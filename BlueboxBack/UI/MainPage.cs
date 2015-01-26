@@ -1,4 +1,5 @@
-﻿using BlueboxBack.Core;
+﻿using BlueboxBack.UI.Components;
+using BlueboxBack.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,27 +12,29 @@ namespace BlueboxBack.UI
 {
     public partial class MainPage : Form
     {
-        ClickHandler clickHandler;
+        MatrixCalc calc = new MatrixCalc();
         public MainPage()
         {
             InitializeComponent();
+            Initialize();
+        }
 
-            clickHandler = new ClickHandler();
+        private void Initialize()
+        {
+            calc = new MatrixCalc();
+
+            Box leftHeaderBox = new Box(Boxs.HeaderVertical, calc);
+            Box topHeaderBox = new Box(Boxs.HeaderHorizontal, calc);
+            Box gridBox = new Box(Boxs.Grid, calc);
+
+            layoutPanel.Controls.Add(topHeaderBox, 1, 0);
+            layoutPanel.Controls.Add(leftHeaderBox, 0, 1);
+            layoutPanel.Controls.Add(gridBox, 1, 1);
         }
 
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            MouseEventArgs args = e as MouseEventArgs;
-            if (args == null)
-            {
-                return;
-            }
-            clickHandler.Handle(args.X, args.Y);
         }
     }
 }
