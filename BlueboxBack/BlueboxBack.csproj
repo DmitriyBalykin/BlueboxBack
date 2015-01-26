@@ -71,7 +71,7 @@
     <Compile Include="UI\MainPage.Designer.cs">
       <DependentUpon>MainPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\GrodDrawer.cs" />
+    <Compile Include="Utilities\GridDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
