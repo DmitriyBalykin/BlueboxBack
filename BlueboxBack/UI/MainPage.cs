@@ -13,7 +13,6 @@ namespace BlueboxBack.UI
 {
     public partial class MainPage : Form
     {
-        MatrixCalc calc;
         DataHandler dataHandler;
 
         public MainPage()
@@ -24,8 +23,7 @@ namespace BlueboxBack.UI
 
         private void Initialize()
         {
-            calc = new MatrixCalc(new DataMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT));
-            dataHandler = new DataHandler(calc);
+            dataHandler = new DataHandler();
 
             Box leftHeaderBox = new Box(BoxTypes.HeaderVertical, dataHandler, Constants.MATRIX_HEIGHT * Constants.CELL_SIDE);
             Box topHeaderBox = new Box(BoxTypes.HeaderHorizontal, dataHandler, Constants.MATRIX_WIDTH * Constants.CELL_SIDE);

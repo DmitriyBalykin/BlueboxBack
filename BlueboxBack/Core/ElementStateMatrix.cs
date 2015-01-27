@@ -13,16 +13,9 @@ namespace BlueboxBack.Core
             {Element.Undefined, Element.Filled,    Element.Cleared},        //action Medium
             {Element.Undefined, Element.Filled,    Element.Cleared}         //action Undefined
             };
-        public Element this[Element i, ActionTypes j]
+        public static Element getElement(Element i, ActionTypes j)
         {
-            get
-            {
-                return matrixArray[(short)i, (short)j];
-            }
-            set
-            {
-                matrixArray[(short)i, (short)j] = value;
-            }
+            return matrixArray[(short)i, (short)j];
         }
     }
 }

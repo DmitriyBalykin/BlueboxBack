@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace BlueboxBack.Utilities
+namespace BlueboxBack.UI
 {
     class GridDrawer
     {

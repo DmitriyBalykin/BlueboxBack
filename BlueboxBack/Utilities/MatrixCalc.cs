@@ -9,12 +9,11 @@ namespace BlueboxBack.Utilities
     class MatrixCalc
     {
         DataMatrix dataMatrix;
-        ElementStateMatrix stateMatrix;
-        public MatrixCalc(DataMatrix matrix)
+        DataMatrix solutionMatrix;
+        public MatrixCalc()
         {
-            this.dataMatrix = matrix;
-
-            stateMatrix = new ElementStateMatrix();
+            dataMatrix = new DataMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT);
+            solutionMatrix = RandomMatrixGenerator.GetRandomMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT);
         }
         internal DataMatrix CalculateMatrix(BoxTypes type, ActionTypes actionTypes, int x, int y)
         {
@@ -40,7 +39,11 @@ namespace BlueboxBack.Utilities
 
         private DataMatrix CalculateLeftHeaderClicked(DataMatrix matrix, ActionTypes actionTypes, int x, int y)
         {
-            throw new NotImplementedException();
+            if (x < 20)
+            {
+                int index = y / Constants.CELL_SIDE;
+            }
+            return matrix;
         }
 
         private DataMatrix CalculateTopHeaderClicked(DataMatrix matrix, ActionTypes actionTypes, int x, int y)
@@ -53,7 +56,7 @@ namespace BlueboxBack.Utilities
             int cellX = x / Constants.CELL_SIDE;
             int cellY = y / Constants.CELL_SIDE;
 
-            Element element = stateMatrix[matrix[cellX, cellY], actionType];
+            Element element = ElementStateMatrix.getElement(matrix[cellX, cellY], actionType);
 
             matrix[cellX, cellY] = element;
 
