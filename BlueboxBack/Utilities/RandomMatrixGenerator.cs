@@ -28,7 +28,7 @@ namespace BlueboxBack.Utilities
         {
             int lowthres = 0;
             int hitres = 10;
-            int density = 7;
+            int density = 6;
 
             if (rand.Next(lowthres, hitres) < density)
             {
