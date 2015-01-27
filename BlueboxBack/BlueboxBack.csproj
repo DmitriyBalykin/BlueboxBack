@@ -81,6 +81,7 @@
     <Compile Include="UI\MainPage.Designer.cs">
       <DependentUpon>MainPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Themes\BasicTheme.cs" />
     <Compile Include="Utilities\ActionHelper.cs" />
     <Compile Include="UI\Drawer.cs" />
     <Compile Include="Utilities\MatrixManager.cs" />
