@@ -82,8 +82,8 @@
       <DependentUpon>MainPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\ActionHelper.cs" />
-    <Compile Include="UI\GridDrawer.cs" />
-    <Compile Include="Utilities\MatrixCalc.cs" />
+    <Compile Include="UI\Drawer.cs" />
+    <Compile Include="Utilities\MatrixManager.cs" />
     <Compile Include="Utilities\RandomMatrixGenerator.cs" />
   </ItemGroup>
   <ItemGroup>

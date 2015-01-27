@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Text;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace BlueboxBack.Core
 {
@@ -8,6 +7,33 @@ namespace BlueboxBack.Core
     {
         public int Width;
         public int Height;
+
+        private int? higlightedRow;
+        public int? HighlightedRow
+        {
+            get
+            {
+                return higlightedRow;
+            }
+            set
+            {
+                higlightedCol = null;
+                higlightedRow = value;
+            }
+        }
+        private int? higlightedCol;
+        public int? HighlightedCol
+        {
+            get
+            {
+                return higlightedCol;
+            }
+            set
+            {
+                higlightedRow = null;
+                higlightedCol = value;
+            }
+        }
         private Element[,] matrixArray;
         public DataMatrix(int width, int height)
         {
@@ -59,6 +85,44 @@ namespace BlueboxBack.Core
                 }
             }
             return true;
+        }
+
+        public List<short> GetCountersList(short? nrow, short? ncol)
+        {
+            List<short> list = new List<short>();
+            short currentBlock = 0;
+            short limit = 0;
+            short row = 0, col = 0;
+            if(ncol == null)
+            {
+                row = nrow ?? 0;
+            }
+            else if(nrow == null)
+            {
+                col = ncol ?? 0;
+            }
+            for (int i = 0; i < limit; i++ )
+            {
+                Element el;
+                if (ncol == null)
+                {
+                    el = matrixArray[i, row];
+                }
+                else
+                {
+                    el = matrixArray[col, i];
+                }
+                if (el == Element.Filled)
+                {
+                    currentBlock++;
+                }
+                else if(currentBlock > 0)
+                {
+                    list.Add(currentBlock);
+                    currentBlock = 0;
+                }
+            }
+            return list;
         }
     }
 }

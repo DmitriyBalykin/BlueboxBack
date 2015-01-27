@@ -34,7 +34,7 @@ namespace BlueboxBack.UI.Components
             DataUpdatedEventArgs args = e as DataUpdatedEventArgs;
             if(args != null)
             {
-                GridDrawer.Draw(this, args.Data);
+                Drawer.Draw(this, args.Data);
             }
         }
 

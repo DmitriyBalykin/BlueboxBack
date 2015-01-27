@@ -6,14 +6,14 @@ using System.Text;
 
 namespace BlueboxBack.Utilities
 {
-    class MatrixCalc
+    class MatrixManager
     {
         DataMatrix dataMatrix;
         DataMatrix solutionMatrix;
 
         public event EventHandler ResultIncorrect;
         public event EventHandler HintUsed;
-        public MatrixCalc()
+        public MatrixManager()
         {
             dataMatrix = new DataMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT);
             solutionMatrix = RandomMatrixGenerator.GetRandomMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT);
@@ -45,9 +45,11 @@ namespace BlueboxBack.Utilities
         {
             if (x < 20)
             {
-                ShowRow(matrix, y / Constants.CELL_SIDE);
+                matrix.HighlightedRow = y / Constants.CELL_SIDE;
+                ShowLine(matrix);
             }
             HintUsed(this, EventArgs.Empty);
+            
             return matrix;
         }
 
@@ -55,7 +57,8 @@ namespace BlueboxBack.Utilities
         {
             if (y < 20)
             {
-                ShowColumn(matrix, x / Constants.CELL_SIDE);
+                matrix.HighlightedCol = x / Constants.CELL_SIDE;
+                ShowLine(matrix);
             }
             HintUsed(this, EventArgs.Empty);
             return matrix;
@@ -72,21 +75,26 @@ namespace BlueboxBack.Utilities
 
             return matrix;
         }
-        private void ShowRow(DataMatrix matrix, int row)
+        private void ShowLine(DataMatrix matrix)
         {
-            for (int i = 0; i < matrix.Width; i++)
+            if(matrix.HighlightedRow != null)
             {
-                matrix[i, row] = solutionMatrix[i, row];
+                int row = matrix.HighlightedRow ?? -1;
+                for (int i = 0; i < matrix.Width; i++)
+                {
+                    matrix[i, row] = solutionMatrix[i, row];
+                }
+            }
+            if (matrix.HighlightedCol != null)
+            {
+                int col = matrix.HighlightedCol ?? -1;
+                for (int i = 0; i < matrix.Width; i++)
+                {
+                    matrix[col, i] = solutionMatrix[col, i];
+                }
             }
         }
 
-        private void ShowColumn(DataMatrix matrix, int column)
-        {
-            for (int i = 0; i < matrix.Height; i++)
-            {
-                matrix[column, i] = solutionMatrix[column, i];
-            }
-        }
         private bool IsMatrixOpened(DataMatrix matrix)
         {
             return !matrix.Contains(Element.Undefined);

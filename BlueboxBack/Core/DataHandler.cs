@@ -10,10 +10,10 @@ namespace BlueboxBack.Core
     {
         public event EventHandler<DataUpdatedEventArgs> DataUpdated;
 
-        MatrixCalc calc;
+        MatrixManager calc;
         public DataHandler()
         {
-            this.calc = new MatrixCalc();
+            this.calc = new MatrixManager();
         }
         public void UpdateData(BoxTypes boxType, int x, int y, ActionTypes actionTypes)
         { 
