@@ -10,6 +10,8 @@ namespace BlueboxBack.Utilities
     {
         DataMatrix dataMatrix;
         DataMatrix solutionMatrix;
+
+        public event EventHandler MatrixesNotEqual;
         public MatrixCalc()
         {
             dataMatrix = new DataMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT);
@@ -61,6 +63,10 @@ namespace BlueboxBack.Utilities
             matrix[cellX, cellY] = element;
 
             return matrix;
+        }
+        private bool IsMatrixOpened(DataMatrix matrix)
+        {
+            return !matrix.Contains(Element.Undefined);
         }
     }
 }

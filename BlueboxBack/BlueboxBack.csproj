@@ -62,11 +62,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ActionTypes.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\DataHandler.cs" />
     <Compile Include="Core\DataUpdatedEventArgs.cs" />
     <Compile Include="Core\Element.cs" />
-    <Compile Include="Core\Matrix.cs" />
+    <Compile Include="Core\ElementStateMatrix.cs" />
+    <Compile Include="Core\DataMatrix.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Components\Box.cs">
@@ -79,8 +81,10 @@
     <Compile Include="UI\MainPage.Designer.cs">
       <DependentUpon>MainPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\GridDrawer.cs" />
+    <Compile Include="Utilities\ActionHelper.cs" />
+    <Compile Include="UI\GridDrawer.cs" />
     <Compile Include="Utilities\MatrixCalc.cs" />
+    <Compile Include="Utilities\RandomMatrixGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
