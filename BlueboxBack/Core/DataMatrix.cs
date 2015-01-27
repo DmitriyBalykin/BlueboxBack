@@ -6,13 +6,13 @@ namespace BlueboxBack.Core
 {
     class DataMatrix : IEnumerable
     {
-        private int width;
-        private int height;
+        public int Width;
+        public int Height;
         private Element[,] matrixArray;
         public DataMatrix(int width, int height)
         {
-            this.width = width;
-            this.height = height;
+            this.Width = width;
+            this.Height = height;
             matrixArray = new Element[width, height];
         }
 
@@ -40,9 +40,9 @@ namespace BlueboxBack.Core
         public IEnumerator GetEnumerator()
         { 
             //linear enumerator
-            for (int i = 0; i < width; i++)
+            for (int i = 0; i < Width; i++)
             {
-                for (int j = 0; j < width; j++)
+                for (int j = 0; j < Width; j++)
                 {
                     yield return matrixArray[i, j];
                 }

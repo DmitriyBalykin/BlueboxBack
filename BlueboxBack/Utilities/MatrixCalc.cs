@@ -49,14 +49,34 @@ namespace BlueboxBack.Utilities
         {
             if (x < 20)
             {
-                int index = y / Constants.CELL_SIDE;
+                ShowRow(matrix, y / Constants.CELL_SIDE);
             }
             return matrix;
         }
 
         private DataMatrix CalculateTopHeaderClicked(DataMatrix matrix, ActionTypes actionTypes, int x, int y)
         {
-            throw new NotImplementedException();
+            if (y < 20)
+            {
+                ShowColumn(matrix, x / Constants.CELL_SIDE);
+            }
+            return matrix;
+        }
+
+        private void ShowRow(DataMatrix matrix, int row)
+        {
+            for (int i = 0; i < matrix.Width; i++ )
+            {
+                matrix[i, row] = solutionMatrix[i, row];
+            }
+        }
+
+        private void ShowColumn(DataMatrix matrix, int column)
+        {
+            for (int i = 0; i < matrix.Height; i++)
+            {
+                matrix[column, i] = solutionMatrix[column, i];
+            }
         }
 
         private DataMatrix CalculateGridClicked(DataMatrix matrix, ActionTypes actionType, int x, int y)
