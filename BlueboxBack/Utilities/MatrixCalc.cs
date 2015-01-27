@@ -61,9 +61,20 @@ namespace BlueboxBack.Utilities
             return matrix;
         }
 
+        private DataMatrix CalculateGridClicked(DataMatrix matrix, ActionTypes actionType, int x, int y)
+        {
+            int cellX = x / Constants.CELL_SIDE;
+            int cellY = y / Constants.CELL_SIDE;
+
+            Element element = ElementStateMatrix.getElement(matrix[cellX, cellY], actionType);
+
+            matrix[cellX, cellY] = element;
+
+            return matrix;
+        }
         private void ShowRow(DataMatrix matrix, int row)
         {
-            for (int i = 0; i < matrix.Width; i++ )
+            for (int i = 0; i < matrix.Width; i++)
             {
                 matrix[i, row] = solutionMatrix[i, row];
             }
@@ -75,18 +86,6 @@ namespace BlueboxBack.Utilities
             {
                 matrix[column, i] = solutionMatrix[column, i];
             }
-        }
-
-        private DataMatrix CalculateGridClicked(DataMatrix matrix, ActionTypes actionType, int x, int y)
-        {
-            int cellX = x / Constants.CELL_SIDE;
-            int cellY = y / Constants.CELL_SIDE;
-
-            Element element = ElementStateMatrix.getElement(matrix[cellX, cellY], actionType);
-
-            matrix[cellX, cellY] = element;
-
-            return matrix;
         }
         private bool IsMatrixOpened(DataMatrix matrix)
         {
