@@ -11,7 +11,7 @@ namespace BlueboxBack.Utilities
         DataMatrix dataMatrix;
         DataMatrix solutionMatrix;
 
-        public event EventHandler MatrixesNotEqual;
+        public event EventHandler ResultIncorrect;
         public MatrixCalc()
         {
             dataMatrix = new DataMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT);
@@ -36,6 +36,12 @@ namespace BlueboxBack.Utilities
                     dataMatrix = CalculateLeftHeaderClicked(dataMatrix, actionTypes, x, y);
                     break;
             }
+
+            if(IsMatrixOpened(dataMatrix) && (dataMatrix != solutionMatrix))
+            {
+                ResultIncorrect(this, EventArgs.Empty);
+            }
+
             return dataMatrix;
         }
 
