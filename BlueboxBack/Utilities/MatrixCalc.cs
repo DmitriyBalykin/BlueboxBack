@@ -12,6 +12,7 @@ namespace BlueboxBack.Utilities
         DataMatrix solutionMatrix;
 
         public event EventHandler ResultIncorrect;
+        public event EventHandler HintUsed;
         public MatrixCalc()
         {
             dataMatrix = new DataMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT);
@@ -19,11 +20,6 @@ namespace BlueboxBack.Utilities
         }
         internal DataMatrix CalculateMatrix(BoxTypes type, ActionTypes actionTypes, int x, int y)
         {
-            if(dataMatrix == null)
-            {
-                throw new NullReferenceException();
-            }
-
             switch(type)
             {
                 case BoxTypes.Grid:
@@ -51,6 +47,7 @@ namespace BlueboxBack.Utilities
             {
                 ShowRow(matrix, y / Constants.CELL_SIDE);
             }
+            HintUsed(this, EventArgs.Empty);
             return matrix;
         }
 
@@ -60,6 +57,7 @@ namespace BlueboxBack.Utilities
             {
                 ShowColumn(matrix, x / Constants.CELL_SIDE);
             }
+            HintUsed(this, EventArgs.Empty);
             return matrix;
         }
 
