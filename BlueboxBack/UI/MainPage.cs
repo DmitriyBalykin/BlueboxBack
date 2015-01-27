@@ -24,7 +24,7 @@ namespace BlueboxBack.UI
 
         private void Initialize()
         {
-            calc = new MatrixCalc(new Matrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT));
+            calc = new MatrixCalc(new DataMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT));
             dataHandler = new DataHandler(calc);
 
             Box leftHeaderBox = new Box(BoxTypes.HeaderVertical, dataHandler, Constants.MATRIX_HEIGHT * Constants.CELL_SIDE);

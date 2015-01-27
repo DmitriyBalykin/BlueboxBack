@@ -6,6 +6,6 @@ namespace BlueboxBack.Core
 {
     class DataUpdatedEventArgs : EventArgs
     {
-        public Matrix Data {get; set;}
+        public DataMatrix Data {get; set;}
     }
 }

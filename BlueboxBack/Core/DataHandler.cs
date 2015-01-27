@@ -15,9 +15,9 @@ namespace BlueboxBack.Core
         {
             this.calc = calc;
         }
-        public void UpdateData(BoxTypes type, int x, int y)
+        public void UpdateData(BoxTypes boxType, int x, int y, ActionTypes actionTypes)
         { 
-            switch(type)
+            switch(boxType)
             {
                 case BoxTypes.Grid:
                     break;
@@ -26,7 +26,7 @@ namespace BlueboxBack.Core
                 case BoxTypes.HeaderVertical:
                     break;
             }
-            DataUpdated(this, new DataUpdatedEventArgs() { Data = calc.CalculateMatrix(type, x, y)});
+            DataUpdated(this, new DataUpdatedEventArgs() { Data = calc.CalculateMatrix(boxType, actionTypes, x, y)});
         }
     }
 }

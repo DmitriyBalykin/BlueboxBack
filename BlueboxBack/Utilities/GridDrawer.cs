@@ -10,7 +10,7 @@ namespace BlueboxBack.Utilities
     class GridDrawer
     {
 
-        public static void Draw(PictureBox pictureBox, Matrix matrix)
+        public static void Draw(PictureBox pictureBox, DataMatrix matrix)
         {
             Bitmap drawArea = new Bitmap(pictureBox.Size.Width, pictureBox.Size.Height);
             pictureBox.Image = drawArea;

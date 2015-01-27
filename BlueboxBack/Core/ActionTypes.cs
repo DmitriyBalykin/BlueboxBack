@@ -4,10 +4,11 @@ using System.Text;
 
 namespace BlueboxBack.Core
 {
-    public enum Element
+    public enum ActionTypes
     {
-        Undefined,
-        Filled,
-        Cleared
+        Main,
+        Alter,
+        Medium,
+        Undefined
     }
 }

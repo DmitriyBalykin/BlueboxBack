@@ -54,7 +54,7 @@ namespace BlueboxBack.UI.Components
             MouseEventArgs args = e as MouseEventArgs;
             if(args != null)
             {
-                dataHandler.UpdateData(type, args.X, args.Y);
+                dataHandler.UpdateData(type, args.X, args.Y, ActionHelper.ResolveAction(args.Button));
             }
         }
     }
