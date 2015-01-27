@@ -46,7 +46,7 @@ namespace BlueboxBack.UI.Components
             Click += Box_Click;
             dataHandler.DataUpdated += dataHandler_DataUpdated;
 
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void Box_Click(object sender, EventArgs e)
