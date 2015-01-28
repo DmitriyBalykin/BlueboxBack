@@ -6,14 +6,14 @@ namespace BlueboxBack.Core
 {
     struct ElementStateMatrix
     {
-        //columns: previous element state {undefined, filled, cleared}
-        private static Element[,] matrixArray = new Element[,]{
-            {Element.Filled,    Element.Undefined, Element.Filled},         //action Main
-            {Element.Cleared,   Element.Cleared,   Element.Undefined},      //action Alter
-            {Element.Undefined, Element.Filled,    Element.Cleared},        //action Medium
-            {Element.Undefined, Element.Filled,    Element.Cleared}         //action Undefined
+        //columns: previous Element.ElementType state {undefined, filled, cleared}
+        private static Element.ElementType[,] matrixArray = new Element.ElementType[,]{
+            {Element.ElementType.Filled,    Element.ElementType.Undefined, Element.ElementType.Filled},         //action Main
+            {Element.ElementType.Cleared,   Element.ElementType.Cleared,   Element.ElementType.Undefined},      //action Alter
+            {Element.ElementType.Undefined, Element.ElementType.Filled,    Element.ElementType.Cleared},        //action Medium
+            {Element.ElementType.Undefined, Element.ElementType.Filled,    Element.ElementType.Cleared}         //action Undefined
             };
-        public static Element getElementWithState(Element i, ActionTypes j)
+        public static Element.ElementType getElementWithState(Element.ElementType i, ActionTypes j)
         {
             return matrixArray[(short)i, (short)j];
         }

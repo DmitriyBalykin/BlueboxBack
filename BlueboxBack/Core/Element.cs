@@ -6,7 +6,7 @@ namespace BlueboxBack.Core
 {
     public class Element
     {
-        enum ElementType
+        public enum ElementType
         {
             Undefined,
             Filled,
@@ -23,6 +23,11 @@ namespace BlueboxBack.Core
         {
             this.Type = type;
             this.Highlighted = highlighted;
+        }
+        public Element(Element.ElementType type)
+        {
+            this.Type = type;
+            this.Highlighted = false;
         }
     }
 }

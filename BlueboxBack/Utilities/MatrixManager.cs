@@ -69,9 +69,7 @@ namespace BlueboxBack.Utilities
             int cellX = x / Constants.CELL_SIDE;
             int cellY = y / Constants.CELL_SIDE;
 
-            Element element = ElementStateMatrix.getElementWithState(matrix[cellX, cellY], actionType);
-
-            matrix[cellX, cellY] = element;
+            matrix[cellX, cellY] = new Element(ElementStateMatrix.getElementWithState(matrix[cellX, cellY].Type, actionType));
 
             return matrix;
         }
@@ -97,7 +95,7 @@ namespace BlueboxBack.Utilities
 
         private bool IsMatrixOpened(DataMatrix matrix)
         {
-            return !matrix.Contains(Element.Undefined);
+            return !matrix.Contains(Element.ElementType.Undefined);
         }
     }
 }

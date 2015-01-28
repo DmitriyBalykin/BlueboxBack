@@ -17,14 +17,14 @@ namespace BlueboxBack.Utilities
             {
                 for (int j = 0; j < width; j++)
                 {
-                    matrix[i, j] = GetRandomElement(rand);
+                    matrix[i, j] = new Element(GetRandomElement(rand), false);
                 }
             }
             //TODO add testing for uniqueness of solution
             return matrix;
         }
 
-        private static Element GetRandomElement(Random rand)
+        private static Element.ElementType GetRandomElement(Random rand)
         {
             int lowthres = 0;
             int hitres = 10;
@@ -32,11 +32,11 @@ namespace BlueboxBack.Utilities
 
             if (rand.Next(lowthres, hitres) < density)
             {
-                return Element.Cleared;
+                return Element.ElementType.Cleared;
             }
             else
             {
-                return Element.Filled;
+                return Element.ElementType.Filled;
             }
         }
     }

@@ -46,7 +46,7 @@ namespace BlueboxBack.Core
         {
             get
             {
-                return matrixArray[i, j];
+                return new Element(matrixArray[i, j], (i == higlightedCol) || (j == higlightedRow));
             }
             set
             {
@@ -75,11 +75,11 @@ namespace BlueboxBack.Core
             }
         }
 
-        public bool Contains(Element element)
+        public bool Contains(Element.ElementType type)
         {
             foreach (Element el in matrixArray)
             {
-                if (el == element)
+                if (el.Type == type)
                 {
                     return false;
                 }
@@ -112,7 +112,7 @@ namespace BlueboxBack.Core
                 {
                     el = matrixArray[col, i];
                 }
-                if (el == Element.Filled)
+                if (el.Type == Element.ElementType.Filled)
                 {
                     currentBlock++;
                 }
