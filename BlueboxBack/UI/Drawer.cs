@@ -99,11 +99,14 @@ namespace BlueboxBack.UI
             switch(element.Type)
             {
                 case Element.ElementType.Cleared:
-                    return ClearedBrush;
+                    return element.Highlighted ? HighlightedClearedBrush : ClearedBrush;
+
                 case Element.ElementType.Filled:
-                    return FilledBrush;
+                    return element.Highlighted ? HighlightedFilledBrush : FilledBrush;
+
                 case Element.ElementType.Undefined:
                     return UndefinedBrush;
+
                 default:
                     return Brushes.Red;
             }
