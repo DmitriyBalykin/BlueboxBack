@@ -29,5 +29,9 @@ namespace BlueboxBack.Core
             this.Type = type;
             this.Highlighted = false;
         }
+        public override string ToString()
+        {
+            return (Highlighted ? "High " : "") +Type.ToString();
+        }
     }
 }
