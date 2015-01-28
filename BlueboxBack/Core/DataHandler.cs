@@ -38,5 +38,10 @@ namespace BlueboxBack.Core
                 Solution = manager.GetSolutionMatrix()
             });
         }
+        public void GenerateNewSolution()
+        {
+            manager.GenerateNewSolution();
+            Refresh();
+        }
     }
 }

@@ -36,9 +36,14 @@ namespace BlueboxBack.UI
             dataHandler.Refresh();
         }
 
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            dataHandler.GenerateNewSolution();
+        }
 
+        private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Dispose();
         }
     }
 }

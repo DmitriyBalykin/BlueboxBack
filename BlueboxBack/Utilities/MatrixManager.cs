@@ -15,8 +15,7 @@ namespace BlueboxBack.Utilities
         public event EventHandler HintUsed;
         public MatrixManager()
         {
-            dataMatrix = new DataMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT);
-            solutionMatrix = RandomMatrixGenerator.GetRandomMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT);
+            GenerateNewSolution();
         }
         internal DataMatrix CalculateMatrix(BoxTypes type, ActionTypes actionTypes, int x, int y)
         {
@@ -47,6 +46,11 @@ namespace BlueboxBack.Utilities
         internal DataMatrix GetDataMatrix()
         {
             return dataMatrix;
+        }
+        internal void GenerateNewSolution()
+        {
+            dataMatrix = new DataMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT);
+            solutionMatrix = RandomMatrixGenerator.GetRandomMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT);
         }
 
         private DataMatrix CalculateLeftHeaderClicked(DataMatrix matrix, ActionTypes actionTypes, int x, int y)
