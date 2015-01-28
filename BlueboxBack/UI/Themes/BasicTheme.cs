@@ -7,12 +7,12 @@ namespace BlueboxBack.UI.Themes
 {
     struct BasicTheme
     {
-        public static Brush UndefinedColor = Brushes.LightGray;
-        public static Brush FilledColor = Brushes.Blue;
-        public static Brush ClearedColor = Brushes.White;
-        public static Brush HighlightedFilledColor = Brushes.LightCyan;
-        public static Brush HighlightedClearedColor = Brushes.LightPink;
+        public static Brush UndefinedBrush = Brushes.LightGray;
+        public static Brush FilledBrush = Brushes.Blue;
+        public static Brush ClearedBrush = Brushes.White;
+        public static Brush HighlightedFilledBrush = Brushes.LightCyan;
+        public static Brush HighlightedClearedBrush = Brushes.LightPink;
         public static Brush HeaderBackground = Brushes.LightGray;
-        public static Brush HeaderText = Brushes.Black;
+        public static Brush HeaderForeground = Brushes.Black;
     }
 }
