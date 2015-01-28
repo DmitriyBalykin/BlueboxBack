@@ -12,5 +12,7 @@ namespace BlueboxBack.UI.Themes
         public static Color ClearedColor = Color.White;
         public static Color HighlightedFilledColor = Color.LightCyan;
         public static Color HighlightedClearedColor = Color.LightPink;
+        public static Color HeaderBackground = Color.LightGray;
+        public static Color HeaderText = Color.Black;
     }
 }
