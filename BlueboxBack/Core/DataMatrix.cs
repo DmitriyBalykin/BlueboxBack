@@ -87,9 +87,9 @@ namespace BlueboxBack.Core
             return true;
         }
 
-        public List<short> GetCountersList(short? nrow, short? ncol)
+        public List<string> GetCountersList(short? nrow, short? ncol)
         {
-            List<short> list = new List<short>();
+            List<string> list = new List<string>();
             short currentBlock = 0;
             short limit = 0;
             short row = 0, col = 0;
@@ -118,10 +118,16 @@ namespace BlueboxBack.Core
                 }
                 else if(currentBlock > 0)
                 {
-                    list.Add(currentBlock);
+                    list.Add(currentBlock.ToString());
                     currentBlock = 0;
                 }
             }
+            return list;
+        }
+        public List<string> GetCountersListSorted(short? nrow, short? ncol)
+        {
+            List<string> list = GetCountersList(nrow, ncol);
+            list.Sort();
             return list;
         }
     }
