@@ -69,7 +69,7 @@ namespace BlueboxBack.Utilities
             int cellX = x / Constants.CELL_SIDE;
             int cellY = y / Constants.CELL_SIDE;
 
-            Element element = ElementStateMatrix.getElement(matrix[cellX, cellY], actionType);
+            Element element = ElementStateMatrix.getElementWithState(matrix[cellX, cellY], actionType);
 
             matrix[cellX, cellY] = element;
 
