@@ -35,7 +35,10 @@ namespace BlueboxBack.Utilities
 
             if(IsMatrixOpened(dataMatrix) && (dataMatrix != solutionMatrix))
             {
-                ResultIncorrect(this, EventArgs.Empty);
+                if (ResultIncorrect != null)
+                {
+                    ResultIncorrect(this, EventArgs.Empty);
+                }
             }
 
             return dataMatrix;
@@ -53,8 +56,10 @@ namespace BlueboxBack.Utilities
                 matrix.HighlightedRow = y / Constants.CELL_SIDE;
                 ShowLine(matrix);
             }
-            HintUsed(this, EventArgs.Empty);
-            
+            if (HintUsed != null)
+            {
+                HintUsed(this, EventArgs.Empty);
+            }
             return matrix;
         }
 
@@ -65,7 +70,10 @@ namespace BlueboxBack.Utilities
                 matrix.HighlightedCol = x / Constants.CELL_SIDE;
                 ShowLine(matrix);
             }
-            HintUsed(this, EventArgs.Empty);
+            if (HintUsed != null)
+            {
+                HintUsed(this, EventArgs.Empty);
+            }
             return matrix;
         }
 
@@ -74,6 +82,8 @@ namespace BlueboxBack.Utilities
             int cellX = x / Constants.CELL_SIDE;
             int cellY = y / Constants.CELL_SIDE;
 
+            Element.ElementType currentType = matrix[cellX, cellY].Type;
+            Element.ElementType newType = ElementStateMatrix.getElementWithState(currentType, actionType);
             matrix[cellX, cellY] = new Element(ElementStateMatrix.getElementWithState(matrix[cellX, cellY].Type, actionType));
 
             return matrix;

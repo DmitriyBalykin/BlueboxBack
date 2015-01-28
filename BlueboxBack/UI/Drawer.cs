@@ -18,8 +18,9 @@ namespace BlueboxBack.UI
         private static Brush HighlightedClearedBrush = BasicTheme.HighlightedClearedBrush;
         private static Brush HeaderBackground = BasicTheme.HeaderBackground;
         private static Brush HeaderForeground = BasicTheme.HeaderForeground;
+        private static Pen GridPen = BasicTheme.GridPen;
 
-        private static Font HeaderFont = new Font(FontFamily.GenericMonospace, 3);
+        private static Font HeaderFont = new Font(FontFamily.GenericMonospace, 10);
         public static void Draw(Box pictureBox, DataMatrix dataMatrix, DataMatrix solutionMatrix)
         {
             Bitmap drawArea = new Bitmap(pictureBox.Size.Width, pictureBox.Size.Height);
@@ -31,6 +32,7 @@ namespace BlueboxBack.UI
             {
                 case BoxTypes.Grid:
                     DrawGrid(g, dataMatrix);
+                    //DrawGrid(g, solutionMatrix);
                     break;
                 case BoxTypes.HeaderHorizontal:
                     DrawHorizontalHeader(g, solutionMatrix);
@@ -46,11 +48,11 @@ namespace BlueboxBack.UI
 
         private static void DrawVerticalHeader(Graphics g, DataMatrix matrix)
         {
-            g.FillRectangle(HeaderBackground, g.ClipBounds);
+            g.FillRectangle(HeaderBackground, g.VisibleClipBounds);
 
             for (short i = 0; i < matrix.Height; i++ )
             {
-                PointF point = new PointF(10, i * Constants.CELL_SIDE + 9);
+                PointF point = new PointF(10, i * Constants.CELL_SIDE);
                 string counters = String.Join(" ", matrix.GetCountersListSorted(i, null).ToArray());
                 g.DrawString(counters, HeaderFont, Brushes.Black, point);
             }
@@ -65,7 +67,7 @@ namespace BlueboxBack.UI
                 short j = 0;
                 foreach(string s in matrix.GetCountersListSorted(i, null))
                 {
-                    PointF point = new PointF(i * Constants.CELL_SIDE + 1, j * 20 + 10);
+                    PointF point = new PointF(i * Constants.CELL_SIDE, j * 20);
                     j++;
                     g.DrawString(s, HeaderFont, Brushes.Black, point);
                 }
@@ -74,23 +76,29 @@ namespace BlueboxBack.UI
 
         private static void DrawGrid(Graphics g, DataMatrix matrix)
         {
-            Pen gridPen = Pens.Black;
             int side = Constants.CELL_SIDE;
             bool horizLinesDrawn = false;
 
+            //draw cells
             for(int i = 0; i < matrix.Width; i++)
             {
                 for(int j = 0; j < matrix.Height; j++)
                 {
                     g.FillRectangle(GetCellBrush(matrix[i, j]), i * side, j * side, (i + 1) * side, (j + 1) * side);
-
-                    if(!horizLinesDrawn)
+                }
+            }
+            //draw grid
+            for (int i = 0; i <= matrix.Width; i++)
+            {
+                for (int j = 0; j <= matrix.Height; j++)
+                {
+                    if (!horizLinesDrawn)
                     {
-                        g.DrawLine(gridPen, i * side, 0, i * side, matrix.Height*side); //horizontal line
-                        horizLinesDrawn = true;
+                        g.DrawLine(GridPen, 0, j * side, matrix.Width * side, j * side); //horizontal line
                     }
                 }
-                g.DrawLine(gridPen, i * side, 0, i * side, matrix.Height*side); //vertical line
+                horizLinesDrawn = true;
+                g.DrawLine(GridPen, i * side, 0, i * side, matrix.Height * side); //vertical line
             }
         }
 
