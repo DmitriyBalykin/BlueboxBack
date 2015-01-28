@@ -21,10 +21,10 @@ namespace BlueboxBack.UI.Components
             switch (boxType)
             { 
                 case BoxTypes.HeaderHorizontal:
-                    InitializeBox(type, dataHandler, actualSizing, Constants.HEADER_SIZING);
+                    InitializeBox(boxType, dataHandler, actualSizing, Constants.HEADER_SIZING);
                     break;
                 case BoxTypes.HeaderVertical:
-                    InitializeBox(type, dataHandler, Constants.HEADER_SIZING, actualSizing);
+                    InitializeBox(boxType, dataHandler, Constants.HEADER_SIZING, actualSizing);
                     break;
             }
         }

@@ -99,9 +99,9 @@ namespace BlueboxBack.Core
             return true;
         }
 
-        public List<string> GetCountersList(short? nrow, short? ncol)
+        public List<short> GetCountersList(short? nrow, short? ncol)
         {
-            List<string> list = new List<string>();
+            List<short> list = new List<short>();
             short currentBlock = 0;
             short limit = 0;
             short row = 0, col = 0;
@@ -132,15 +132,15 @@ namespace BlueboxBack.Core
                 }
                 else if(currentBlock > 0)
                 {
-                    list.Add(currentBlock.ToString());
+                    list.Add(currentBlock);
                     currentBlock = 0;
                 }
             }
             return list;
         }
-        public List<string> GetCountersListSorted(short? nrow, short? ncol)
+        public List<short> GetCountersListSorted(short? nrow, short? ncol)
         {
-            List<string> list = GetCountersList(nrow, ncol);
+            List<short> list = GetCountersList(nrow, ncol);
             list.Sort();
             return list;
         }

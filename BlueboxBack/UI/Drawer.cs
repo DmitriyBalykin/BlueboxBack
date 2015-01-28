@@ -50,11 +50,19 @@ namespace BlueboxBack.UI
         {
             g.FillRectangle(HeaderBackground, g.VisibleClipBounds);
 
+            StringBuilder sb;
             for (short i = 0; i < matrix.Height; i++ )
             {
                 PointF point = new PointF(10, i * Constants.CELL_SIDE);
-                string counters = String.Join(" ", matrix.GetCountersListSorted(i, null).ToArray());
-                g.DrawString(counters, HeaderFont, Brushes.Black, point);
+                List<short> countersList = matrix.GetCountersListSorted(i, null);
+                sb = new StringBuilder(countersList.Count*3);
+
+                foreach(short s in countersList)
+                {
+                    sb.Append(s).Append(" ");
+                }
+                
+                g.DrawString(sb.ToString().TrimEnd(' '), HeaderFont, Brushes.Black, point);
             }
         }
 
@@ -65,11 +73,11 @@ namespace BlueboxBack.UI
             for (short i = 0; i < matrix.Width; i++)
             {
                 short j = 0;
-                foreach(string s in matrix.GetCountersListSorted(i, null))
+                foreach(short s in matrix.GetCountersListSorted(null, i))
                 {
                     PointF point = new PointF(i * Constants.CELL_SIDE, j * 20);
                     j++;
-                    g.DrawString(s, HeaderFont, Brushes.Black, point);
+                    g.DrawString(s.ToString(), HeaderFont, Brushes.Black, point);
                 }
             }
         }

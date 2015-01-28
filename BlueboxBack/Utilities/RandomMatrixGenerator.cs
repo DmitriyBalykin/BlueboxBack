@@ -8,18 +8,42 @@ namespace BlueboxBack.Utilities
     class RandomMatrixGenerator
     {
         private const int BASIC_DENSITY = 51;
-        private const int SPACE_DENSITY = 5;
-        private const int GROUP_DENSITY = 95;
+        private const int SPACE_DENSITY = 10;
+        private const int GROUP_DENSITY = 90;
 
         private const int LOW_THRESHOLD = 0;
         private const int HIGH_THRESHOLD = 100;
 
-        private const int DENSITY_CHANGE_FACTOR = 3;
+        private const int GROUP_DENSITY_CHANGE_FACTOR = 1;
+        private const int SPACE_DENSITY_CHANGE_FACTOR = 3;
 
         private static int space_density = SPACE_DENSITY;
         private static int group_density = GROUP_DENSITY;
 
-        public static DataMatrix GetRandomMatrix(int width, int height)
+        public static DataMatrix GetRandomMatrix(short width, short height)
+        {
+            DataMatrix m1 = GetRandomMatrixBase(width, height);
+            //DataMatrix m2 = GetRandomMatrixBase(width, height);
+
+            //DataMatrix result = new DataMatrix(width, height);
+
+            //for (int i = 0; i < width; i++)
+            //{
+            //    for (int j = 0; j < height; j++)
+            //    {
+            //        result[i, j] = new Element(MixElements(m1[i, j], m2[j, i]));
+            //    }
+            //}
+            return m1;
+        }
+
+        private static Element.ElementType MixElements(Element element1, Element element2)
+        {
+            return (element1.Type == Element.ElementType.Filled && element2.Type == Element.ElementType.Filled)
+                ? Element.ElementType.Filled
+                : Element.ElementType.Cleared;
+        }
+        private static DataMatrix GetRandomMatrixBase(int width, int height)
         {
             DataMatrix matrix = new DataMatrix((short)width, (short)height);
 
@@ -69,17 +93,17 @@ namespace BlueboxBack.Utilities
             if(leftEl.Type == Element.ElementType.Cleared && topEl.Type == Element.ElementType.Cleared)
             {
                 density = space_density;
-                space_density += DENSITY_CHANGE_FACTOR;
+                space_density += SPACE_DENSITY_CHANGE_FACTOR;
             }
             else if (leftEl.Type == Element.ElementType.Filled && topEl.Type == Element.ElementType.Filled)
             {
                 density = group_density;
-                group_density -= DENSITY_CHANGE_FACTOR;
+                group_density -= GROUP_DENSITY_CHANGE_FACTOR;
             }
             else
             {
-                space_density -= DENSITY_CHANGE_FACTOR;
-                group_density += DENSITY_CHANGE_FACTOR;
+                space_density -= SPACE_DENSITY_CHANGE_FACTOR;
+                group_density += GROUP_DENSITY_CHANGE_FACTOR;
             }
 
             return GetRandomElement(rand, density);
