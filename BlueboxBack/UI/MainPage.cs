@@ -32,6 +32,8 @@ namespace BlueboxBack.UI
             layoutPanel.Controls.Add(topHeaderBox, 1, 0);
             layoutPanel.Controls.Add(leftHeaderBox, 0, 1);
             layoutPanel.Controls.Add(gridBox, 1, 1);
+
+            dataHandler.Refresh();
         }
 
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)

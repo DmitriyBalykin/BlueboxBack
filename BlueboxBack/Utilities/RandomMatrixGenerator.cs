@@ -7,7 +7,7 @@ namespace BlueboxBack.Utilities
 {
     class RandomMatrixGenerator
     {
-        public static DataMatrix GetRandomMatrix(int width, int height)
+        public static DataMatrix GetRandomMatrix(short width, short height)
         {
             DataMatrix matrix = new DataMatrix(width, height);
 

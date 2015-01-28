@@ -20,7 +20,7 @@ namespace BlueboxBack.UI
         private static Brush HeaderForeground = BasicTheme.HeaderForeground;
 
         private static Font HeaderFont = new Font(FontFamily.GenericMonospace, 3);
-        public static void Draw(Box pictureBox, DataMatrix matrix)
+        public static void Draw(Box pictureBox, DataMatrix dataMatrix, DataMatrix solutionMatrix)
         {
             Bitmap drawArea = new Bitmap(pictureBox.Size.Width, pictureBox.Size.Height);
             pictureBox.Image = drawArea;
@@ -30,13 +30,13 @@ namespace BlueboxBack.UI
             switch (pictureBox.type)
             {
                 case BoxTypes.Grid:
-                    DrawGrid(g, matrix);
+                    DrawGrid(g, dataMatrix);
                     break;
                 case BoxTypes.HeaderHorizontal:
-                    DrawHorizontalHeader(g, matrix);
+                    DrawHorizontalHeader(g, solutionMatrix);
                     break;
                 case BoxTypes.HeaderVertical:
-                    DrawVerticalHeader(g, matrix);
+                    DrawVerticalHeader(g, solutionMatrix);
                     break;
             }
 

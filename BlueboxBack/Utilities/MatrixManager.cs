@@ -41,6 +41,11 @@ namespace BlueboxBack.Utilities
             return dataMatrix;
         }
 
+        internal DataMatrix GetDataMatrix()
+        {
+            return dataMatrix;
+        }
+
         private DataMatrix CalculateLeftHeaderClicked(DataMatrix matrix, ActionTypes actionTypes, int x, int y)
         {
             if (x < 20)
@@ -96,6 +101,11 @@ namespace BlueboxBack.Utilities
         private bool IsMatrixOpened(DataMatrix matrix)
         {
             return !matrix.Contains(Element.ElementType.Undefined);
+        }
+
+        internal DataMatrix GetSolutionMatrix()
+        {
+            return solutionMatrix;
         }
     }
 }

@@ -5,8 +5,8 @@ namespace BlueboxBack.Core
 {
     class DataMatrix : IEnumerable
     {
-        public int Width;
-        public int Height;
+        public short Width;
+        public short Height;
 
         private int? higlightedRow;
         public int? HighlightedRow
@@ -35,11 +35,23 @@ namespace BlueboxBack.Core
             }
         }
         private Element[,] matrixArray;
-        public DataMatrix(int width, int height)
+        public DataMatrix(short width, short height)
         {
             this.Width = width;
             this.Height = height;
             matrixArray = new Element[width, height];
+
+            InitializeMatrix();
+        }
+        private void InitializeMatrix()
+        {
+            for (int i = 0; i < Width; i++)
+            {
+                for (int j = 0; j < Width; j++)
+                {
+                    matrixArray[i, j] = new Element(Element.ElementType.Undefined);
+                }
+            }
         }
 
         public Element this[int i, int j]
@@ -96,10 +108,12 @@ namespace BlueboxBack.Core
             if(ncol == null)
             {
                 row = nrow ?? 0;
+                limit = Height;
             }
             else if(nrow == null)
             {
                 col = ncol ?? 0;
+                limit = Width;
             }
             for (int i = 0; i < limit; i++ )
             {

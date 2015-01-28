@@ -7,5 +7,6 @@ namespace BlueboxBack.Core
     class DataUpdatedEventArgs : EventArgs
     {
         public DataMatrix Data {get; set;}
+        public DataMatrix Solution { get; set; }
     }
 }

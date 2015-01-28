@@ -10,10 +10,10 @@ namespace BlueboxBack.Core
     {
         public event EventHandler<DataUpdatedEventArgs> DataUpdated;
 
-        MatrixManager calc;
+        MatrixManager manager;
         public DataHandler()
         {
-            this.calc = new MatrixManager();
+            this.manager = new MatrixManager();
         }
         public void UpdateData(BoxTypes boxType, int x, int y, ActionTypes actionTypes)
         { 
@@ -26,7 +26,17 @@ namespace BlueboxBack.Core
                 case BoxTypes.HeaderVertical:
                     break;
             }
-            DataUpdated(this, new DataUpdatedEventArgs() { Data = calc.CalculateMatrix(boxType, actionTypes, x, y)});
+            DataUpdated(this, new DataUpdatedEventArgs() {
+                Data = manager.CalculateMatrix(boxType, actionTypes, x, y),
+                Solution = manager.GetSolutionMatrix()
+            });
+        }
+        public void Refresh()
+        {
+            DataUpdated(this, new DataUpdatedEventArgs() {
+                Data = manager.GetDataMatrix(),
+                Solution = manager.GetSolutionMatrix()
+            });
         }
     }
 }
