@@ -17,19 +17,11 @@ namespace BlueboxBack.Core
         }
         public void UpdateData(BoxTypes boxType, int x, int y, ActionTypes actionTypes)
         { 
-            switch(boxType)
-            {
-                case BoxTypes.Grid:
-                    break;
-                case BoxTypes.HeaderHorizontal:
-                    break;
-                case BoxTypes.HeaderVertical:
-                    break;
-            }
             DataUpdated(this, new DataUpdatedEventArgs() {
                 Data = manager.CalculateMatrix(boxType, actionTypes, x, y),
                 Solution = manager.GetSolutionMatrix()
             });
+            manager.HeadersDrawn = true;
         }
         public void Refresh()
         {
@@ -42,6 +34,18 @@ namespace BlueboxBack.Core
         {
             manager.GenerateNewSolution();
             Refresh();
+        }
+        public short[][] GetHeadersData(Header.HeaderType type)
+        {
+            switch (type)
+            {
+                case Header.HeaderType.Horizontal:
+                    return manager.GetTopHeaderData();
+                case Header.HeaderType.Vertical:
+                    return manager.GetLeftHeaderData();
+                default:
+                    return null;
+            }
         }
     }
 }

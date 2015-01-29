@@ -20,9 +20,16 @@ namespace BlueboxBack.UI
         private static Brush HeaderForeground = BasicTheme.HeaderForeground;
         private static Pen GridPen = BasicTheme.GridPen;
 
-        private static Font HeaderFont = new Font(FontFamily.GenericMonospace, 10);
+        private static Font HeaderFont = SystemFonts.MenuFont;
+        private static bool horizHeaderDrawn = false;
+        private static bool vertHeaderDrawn = false;
         public static void Draw(Box pictureBox, DataMatrix dataMatrix, DataMatrix solutionMatrix)
         {
+            //if ((pictureBox.type == BoxTypes.HeaderHorizontal && horizHeaderDrawn) &&
+            //    (pictureBox.type == BoxTypes.HeaderHorizontal && vertHeaderDrawn))
+            //{
+            //    return;
+            //}
             Bitmap drawArea = new Bitmap(pictureBox.Size.Width, pictureBox.Size.Height);
             pictureBox.Image = drawArea;
 
@@ -35,10 +42,12 @@ namespace BlueboxBack.UI
                     //DrawGrid(g, solutionMatrix);
                     break;
                 case BoxTypes.HeaderHorizontal:
-                    DrawHorizontalHeader(g, solutionMatrix);
+                    //DrawHorizontalHeader(g, solutionMatrix);
+                    horizHeaderDrawn = true;
                     break;
                 case BoxTypes.HeaderVertical:
-                    DrawVerticalHeader(g, solutionMatrix);
+                    //DrawVerticalHeader(g, solutionMatrix);
+                    vertHeaderDrawn = true;
                     break;
             }
 
@@ -51,18 +60,29 @@ namespace BlueboxBack.UI
             g.FillRectangle(HeaderBackground, g.VisibleClipBounds);
 
             StringBuilder sb;
+            string[] lines = new string[matrix.Height];
+            int maxLine = 0;
             for (short i = 0; i < matrix.Height; i++ )
             {
-                PointF point = new PointF(10, i * Constants.CELL_SIDE);
                 List<short> countersList = matrix.GetCountersListSorted(i, null);
                 sb = new StringBuilder(countersList.Count*3);
 
                 foreach(short s in countersList)
                 {
-                    sb.Append(s).Append(" ");
+                    sb.Append(String.Format("{0,3} ", s)).Append(" ");
                 }
-                
-                g.DrawString(sb.ToString().TrimEnd(' '), HeaderFont, Brushes.Black, point);
+                lines[i] = sb.ToString();
+                if(lines[i].Length > maxLine)
+                {
+                    maxLine = lines[i].Length;
+                }
+            }
+            for (short i = 0; i < matrix.Height; i++)
+            {
+                PointF point = new PointF(10, i * Constants.CELL_SIDE);
+
+
+                g.DrawString(lines[i], HeaderFont, Brushes.Black, point);
             }
         }
 
@@ -77,7 +97,7 @@ namespace BlueboxBack.UI
                 {
                     PointF point = new PointF(i * Constants.CELL_SIDE, j * 20);
                     j++;
-                    g.DrawString(s.ToString(), HeaderFont, Brushes.Black, point);
+                    g.DrawString(String.Format("{0,3} ", s), HeaderFont, Brushes.Black, point);
                 }
             }
         }

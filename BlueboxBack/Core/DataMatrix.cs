@@ -8,6 +8,9 @@ namespace BlueboxBack.Core
         public short Width;
         public short Height;
 
+        public int MaxElementsWidth;
+        public int MaxElementsHeight;
+
         private int? higlightedRow;
         public int? HighlightedRow
         {
