@@ -58,6 +58,7 @@ namespace BlueboxBack.UI
                     j--;
                     g.DrawString(String.Format("{0,2}", s), HeaderFont, Brushes.Black, point);
                 }
+                g.DrawLine(GridPen,0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING, i * Constants.CELL_SIDE);
             }
         }
 
@@ -74,6 +75,7 @@ namespace BlueboxBack.UI
                     j--;
                     g.DrawString(String.Format("{0,2}  ", s), HeaderFont, Brushes.Black, point);
                 }
+                g.DrawLine(GridPen, i * Constants.CELL_SIDE, 0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING);
             }
         }
 
