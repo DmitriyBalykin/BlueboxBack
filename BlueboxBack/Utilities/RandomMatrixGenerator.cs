@@ -9,7 +9,7 @@ namespace BlueboxBack.Utilities
     {
         private const int BASIC_DENSITY = 51;
         private const int SPACE_DENSITY = 10;
-        private const int GROUP_DENSITY = 90;
+        private const int GROUP_DENSITY = 60;
 
         private const int LOW_THRESHOLD = 0;
         private const int HIGH_THRESHOLD = 100;
@@ -45,25 +45,20 @@ namespace BlueboxBack.Utilities
         }
         private static DataMatrix GetRandomMatrixBase(int width, int height)
         {
-            DataMatrix matrix = new DataMatrix((short)width, (short)height);
+            //extend matrix and fill border with cleared elements for further
+            int widthExtend = width + 2;
+            int heightExtend = height + 2;
+            DataMatrix matrix = new DataMatrix((short)widthExtend, (short)heightExtend);
 
             Random rand = new Random();
 
-            for (int i = 0; i < width; i++ )
+            for (int i = 0; i < widthExtend; i++ )
             {
-                for (int j = 0; j < height; j++)
+                for (int j = 0; j < heightExtend; j++)
                 {
-                    if (i == 0 && j == 0)
+                    if (i == 0 || j == 0 || i == (widthExtend - 1) || j == (heightExtend - 1))
                     {
-                        matrix[i, j] = new Element(GetRandomElement(rand), false);
-                    }
-                    else if (i == 0)
-                    {
-                        matrix[i, j] = new Element(GetRandomElementWithGrouping(rand, matrix[i, (j - 1)], matrix[i, (j - 1)]), false);
-                    }
-                    else if (j == 0)
-                    {
-                        matrix[i, j] = new Element(GetRandomElementWithGrouping(rand, matrix[(i - 1), j], matrix[(i - 1), j]), false);
+                        matrix[i, j] = new Element(Element.ElementType.Cleared);
                     }
                     else
                     {
@@ -71,8 +66,62 @@ namespace BlueboxBack.Utilities
                     }
                 }
             }
+            for (short i = 1; i < widthExtend - 1; i++)
+            {
+                bool foundSingle;
+                do
+                {
+                    foundSingle = false;
+                    for (int j = 1; j < heightExtend - 1; j++)
+                    {
+                        if (IsElementSingle(matrix, i, j))
+                        {
+                            matrix[i, j] = new Element(Element.ElementType.Cleared);
+                            foundSingle = true;
+                        }
+                    }
+                }
+                while (matrix.GetCountersList(null, i).Count > Constants.MAX_ELEMENTS && foundSingle);
+            }
+            for (short i = 1; i < heightExtend - 1; i++)
+            {
+                bool foundSingle;
+                do
+                {
+                    foundSingle = false;
+                    for (int j = 1; j < widthExtend - 1; j++)
+                    {
+                        if (IsElementSingle(matrix, i, j))
+                        {
+                            matrix[i, j] = new Element(Element.ElementType.Cleared);
+                            foundSingle = true;
+                        }
+                    }
+                }
+                while (matrix.GetCountersList(i, null).Count > Constants.MAX_ELEMENTS && foundSingle);
+            }
+            //cut result matrix
+            DataMatrix resultMatrix = new DataMatrix(width, height);
+            for (int i = 1; i < widthExtend - 1; i++)
+            {
+                for (int j = 1; j < heightExtend - 1; j++)
+                {
+                    resultMatrix[i-1, j-1] = matrix[i,j];
+                }
+            }
             //TODO add testing for uniqueness of solution
             return matrix;
+        }
+        private static bool IsElementSingle(DataMatrix matrix, int i, int j)
+        {
+            if ((matrix[i - 1, j] + matrix[i, j - 1] + matrix[i, j + 1] + matrix[i + 1, j]) == 0 && matrix[i, j].Type == Element.ElementType.Filled)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private static Element.ElementType GetRandomElement(Random rand, int density = BASIC_DENSITY)

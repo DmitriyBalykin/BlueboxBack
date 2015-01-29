@@ -43,6 +43,14 @@ namespace BlueboxBack.Core
 
             InitializeMatrix();
         }
+        public DataMatrix(int width, int height)
+        {
+            this.Width = (short)width;
+            this.Height = (short)height;
+            matrixArray = new Element[width, height];
+
+            InitializeMatrix();
+        }
         private void InitializeMatrix()
         {
             for (int i = 0; i < Width; i++)

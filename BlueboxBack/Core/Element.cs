@@ -33,5 +33,38 @@ namespace BlueboxBack.Core
         {
             return (Highlighted ? "High " : "") +Type.ToString();
         }
+        public static short operator +(Element el1, Element el2)
+        {
+            if (el1.Type == ElementType.Cleared && el2.Type == ElementType.Cleared)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        public static short operator +(Element el1, int i)
+        {
+            if (el1.Type == ElementType.Cleared && i == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        public static short operator +(int i, Element el1)
+        {
+            if (el1.Type == ElementType.Cleared && i == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
     }
 }
