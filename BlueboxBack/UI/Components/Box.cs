@@ -9,6 +9,8 @@ namespace BlueboxBack.UI.Components
 {
     class Box : PictureBox
     {
+        private bool MousePressed = false;
+
         DataHandler dataHandler;
         public BoxTypes type;
         public Box(BoxTypes type, DataHandler dataHandler, int width, int height)
@@ -44,10 +46,32 @@ namespace BlueboxBack.UI.Components
             this.dataHandler = dataHandler;
 
             Click += Box_Click;
+            MouseDown += Box_MouseDown;
+            MouseUp += Box_MouseUp;
+            MouseMove += Box_MouseMove;
             dataHandler.DataUpdated += dataHandler_DataUpdated;
 
             Width = width + 1;
             Height = height + 1;
+        }
+
+        void Box_MouseMove(object sender, MouseEventArgs e)
+        {
+            MouseEventArgs args = e as MouseEventArgs;
+            if (MousePressed && args != null)
+            {
+                dataHandler.UpdateData(type, args.X, args.Y, ActionHelper.ResolveAction(args.Button));
+            }
+        }
+
+        void Box_MouseUp(object sender, MouseEventArgs e)
+        {
+            MousePressed = false;
+        }
+
+        void Box_MouseDown(object sender, MouseEventArgs e)
+        {
+            MousePressed = true;
         }
 
         void Box_Click(object sender, EventArgs e)
