@@ -142,6 +142,7 @@ namespace BlueboxBack.Core
         {
             List<short> list = GetCountersList(nrow, ncol);
             list.Sort();
+            list.Reverse();
             return list;
         }
     }

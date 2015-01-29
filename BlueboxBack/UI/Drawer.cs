@@ -32,7 +32,6 @@ namespace BlueboxBack.UI
             {
                 case BoxTypes.Grid:
                     DrawGrid(g, dataMatrix);
-                    //DrawGrid(g, solutionMatrix);
                     break;
                 case BoxTypes.HeaderHorizontal:
                     DrawHorizontalHeader(g, solutionMatrix);
@@ -48,21 +47,17 @@ namespace BlueboxBack.UI
 
         private static void DrawVerticalHeader(Graphics g, DataMatrix matrix)
         {
-            g.FillRectangle(HeaderBackground, g.VisibleClipBounds);
+            g.FillRectangle(HeaderBackground, g.ClipBounds);
 
-            StringBuilder sb;
-            for (short i = 0; i < matrix.Height; i++ )
+            for (short i = 0; i < matrix.Height; i++)
             {
-                PointF point = new PointF(10, i * Constants.CELL_SIDE);
-                List<short> countersList = matrix.GetCountersListSorted(i, null);
-                sb = new StringBuilder(countersList.Count*3);
-
-                foreach(short s in countersList)
+                short j = Constants.HEADER_SIZING / 20;
+                foreach (short s in matrix.GetCountersListSorted(i, null))
                 {
-                    sb.Append(String.Format("{0,3}  ", s));
+                    PointF point = new PointF(j * 20, i * Constants.CELL_SIDE);
+                    j--;
+                    g.DrawString(String.Format("{0,2}", s), HeaderFont, Brushes.Black, point);
                 }
-                
-                g.DrawString(sb.ToString(), HeaderFont, Brushes.Black, point);
             }
         }
 
@@ -72,12 +67,12 @@ namespace BlueboxBack.UI
 
             for (short i = 0; i < matrix.Width; i++)
             {
-                short j = 0;
+                short j = Constants.HEADER_SIZING/20;
                 foreach(short s in matrix.GetCountersListSorted(null, i))
                 {
                     PointF point = new PointF(i * Constants.CELL_SIDE, j * 20);
-                    j++;
-                    g.DrawString(s.ToString(), HeaderFont, Brushes.Black, point);
+                    j--;
+                    g.DrawString(String.Format("{0,2}  ", s), HeaderFont, Brushes.Black, point);
                 }
             }
         }
