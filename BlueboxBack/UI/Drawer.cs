@@ -20,7 +20,7 @@ namespace BlueboxBack.UI
         private static Brush HeaderForeground = BasicTheme.HeaderForeground;
         private static Pen GridPen = BasicTheme.GridPen;
 
-        private static Font HeaderFont = new Font(FontFamily.GenericMonospace, 10);
+        private static Font HeaderFont = SystemFonts.MenuFont;
         public static void Draw(Box pictureBox, DataMatrix dataMatrix, DataMatrix solutionMatrix)
         {
             Bitmap drawArea = new Bitmap(pictureBox.Size.Width, pictureBox.Size.Height);
@@ -59,10 +59,10 @@ namespace BlueboxBack.UI
 
                 foreach(short s in countersList)
                 {
-                    sb.Append(s).Append(" ");
+                    sb.Append(String.Format("{0,3}  ", s));
                 }
                 
-                g.DrawString(sb.ToString().TrimEnd(' '), HeaderFont, Brushes.Black, point);
+                g.DrawString(sb.ToString(), HeaderFont, Brushes.Black, point);
             }
         }
 
