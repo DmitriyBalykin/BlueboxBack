@@ -22,6 +22,8 @@ namespace BlueboxBack.Utilities
             switch(type)
             {
                 case BoxTypes.Grid:
+                    dataMatrix.HighlightedCol = null;
+                    dataMatrix.HighlightedRow = null;
                     dataMatrix = CalculateGridClicked(dataMatrix, actionTypes, x, y);
                     break;
                 case BoxTypes.HeaderHorizontal:
