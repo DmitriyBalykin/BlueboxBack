@@ -66,5 +66,13 @@ namespace BlueboxBack.Core
                 return 1;
             }
         }
+        public static bool operator ==(Element el1, Element el2)
+        {
+            return el1.Type == el2.Type;
+        }
+        public static bool operator !=(Element el1, Element el2)
+        {
+            return el1.Type != el2.Type;
+        }
     }
 }

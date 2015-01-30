@@ -110,7 +110,7 @@ namespace BlueboxBack.Utilities
                 }
             }
             //TODO add testing for uniqueness of solution
-            return matrix;
+            return resultMatrix;
         }
         private static bool IsElementSingle(DataMatrix matrix, int i, int j)
         {

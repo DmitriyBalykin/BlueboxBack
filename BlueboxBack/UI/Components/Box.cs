@@ -51,8 +51,19 @@ namespace BlueboxBack.UI.Components
             MouseMove += Box_MouseMove;
             dataHandler.DataUpdated += dataHandler_DataUpdated;
 
+            dataHandler.Manager.ResultPublished += Manager_ResultPublished;
+
             Width = width + 1;
             Height = height + 1;
+        }
+
+        void Manager_ResultPublished(object sender, EventArgs e)
+        {
+            DataUpdatedEventArgs args = e as DataUpdatedEventArgs;
+            if (args != null)
+            {
+                Drawer.Draw(this, args.Data, args.Solution, args.Result);
+            }
         }
 
         void Box_MouseMove(object sender, MouseEventArgs e)

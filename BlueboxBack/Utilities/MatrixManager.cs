@@ -11,7 +11,7 @@ namespace BlueboxBack.Utilities
         DataMatrix dataMatrix;
         DataMatrix solutionMatrix;
 
-        public event EventHandler ResultIncorrect;
+        public event EventHandler ResultPublished;
         public event EventHandler HintUsed;
         public MatrixManager()
         {
@@ -34,11 +34,15 @@ namespace BlueboxBack.Utilities
                     break;
             }
 
-            if(IsMatrixOpened(dataMatrix) && (dataMatrix != solutionMatrix))
+            if(IsMatrixOpened(dataMatrix) && (ResultPublished != null))
             {
-                if (ResultIncorrect != null)
+                if (dataMatrix == solutionMatrix)
                 {
-                    ResultIncorrect(this, EventArgs.Empty);
+                    ResultPublished(this, new DataUpdatedEventArgs(dataMatrix, solutionMatrix, ResultEvent.ResultType.Correct));
+                }
+                else
+                {
+                    ResultPublished(this, new DataUpdatedEventArgs(dataMatrix, solutionMatrix, ResultEvent.ResultType.Incorrect));
                 }
             }
 

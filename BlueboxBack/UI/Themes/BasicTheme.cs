@@ -8,7 +8,9 @@ namespace BlueboxBack.UI.Themes
     struct BasicTheme
     {
         public static Brush UndefinedBrush = new SolidBrush(Color.FromArgb(0xc0, 0xc0, 0xc0));
-        public static Brush FilledBrush = Brushes.Blue;
+        public static Brush FilledBrushDefault = Brushes.Blue;
+        public static Brush FilledBrushCorrectResult = Brushes.Green;
+        public static Brush FilledBrushIncorrectResult = Brushes.Red;
         public static Brush ClearedBrush = Brushes.White;
         public static Brush HighlightedFilledBrush = Brushes.DarkCyan;
         public static Brush HighlightedClearedBrush = new SolidBrush(Color.FromArgb(0xff, 0xea, 0xaa));

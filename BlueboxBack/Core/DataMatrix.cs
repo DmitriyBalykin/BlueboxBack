@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace BlueboxBack.Core
@@ -76,7 +77,17 @@ namespace BlueboxBack.Core
 
         public static bool operator ==(DataMatrix m1, DataMatrix m2)
         {
-            return m1.matrixArray == m2.matrixArray;
+            for (int i = 0; i < m1.Width; i++ )
+            {
+                for (int j = 0; j < m1.Height;j++)
+                {
+                    if(m1[i, j] != m2[i, j])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
         public static bool operator !=(DataMatrix m1, DataMatrix m2)
@@ -101,10 +112,10 @@ namespace BlueboxBack.Core
             {
                 if (el.Type == type)
                 {
-                    return false;
+                    return true;
                 }
             }
-            return true;
+            return false;
         }
 
         public List<short> GetCountersList(short? nrow, short? ncol)

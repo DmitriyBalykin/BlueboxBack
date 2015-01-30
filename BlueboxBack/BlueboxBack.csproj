@@ -69,6 +69,7 @@
     <Compile Include="Core\Element.cs" />
     <Compile Include="Core\ElementStateMatrix.cs" />
     <Compile Include="Core\DataMatrix.cs" />
+    <Compile Include="Core\ResultEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Components\Box.cs">

@@ -12,7 +12,7 @@ namespace BlueboxBack.UI
     class Drawer
     {
         private static Brush UndefinedBrush = BasicTheme.UndefinedBrush;
-        private static Brush FilledBrush = BasicTheme.FilledBrush;
+        private static Brush FilledBrush = BasicTheme.FilledBrushDefault;
         private static Brush ClearedBrush = BasicTheme.ClearedBrush;
         private static Brush HighlightedFilledBrush = BasicTheme.HighlightedFilledBrush;
         private static Brush HighlightedClearedBrush = BasicTheme.HighlightedClearedBrush;
@@ -44,6 +44,22 @@ namespace BlueboxBack.UI
             pictureBox.Image = drawArea;
             g.Dispose();
         }
+        public static void Draw(Box pictureBox, DataMatrix dataMatrix, DataMatrix solutionMatrix, ResultEvent.ResultType result)
+        {
+            switch (result)
+            {
+                case ResultEvent.ResultType.Correct:
+                    FilledBrush = BasicTheme.FilledBrushCorrectResult;
+                    break;
+                case ResultEvent.ResultType.Incorrect:
+                    FilledBrush = BasicTheme.FilledBrushIncorrectResult;
+                    break;
+                case ResultEvent.ResultType.Unpublished:
+                    FilledBrush = BasicTheme.FilledBrushDefault;
+                    break;
+            }
+            Draw(pictureBox, dataMatrix, solutionMatrix);
+        }
 
         private static void DrawVerticalHeader(Graphics g, DataMatrix matrix)
         {
@@ -54,7 +70,7 @@ namespace BlueboxBack.UI
                 short j = Constants.HEADER_SIZING / 20;
                 foreach (short s in matrix.GetCountersListSorted(i, null))
                 {
-                    PointF point = new PointF((j - 1) * 20, i * Constants.CELL_SIDE);
+                    PointF point = new PointF((j - 1) * 20 - 5, i * Constants.CELL_SIDE);
                     j--;
                     g.DrawString(String.Format("{0,2}", s), HeaderFont, Brushes.Black, point);
                 }
