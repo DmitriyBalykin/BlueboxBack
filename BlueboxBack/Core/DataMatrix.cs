@@ -134,18 +134,23 @@ namespace BlueboxBack.Core
                 col = ncol ?? 0;
                 limit = Width;
             }
-            for (int i = 0; i < limit; i++ )
+            limit++; // iterate one more step at the end to count last block
+            for (int i = 0; i < limit; i++)
             {
-                Element el;
-                if (ncol == null)
+                Element el = null;
+                if(i < limit - 1)
                 {
-                    el = matrixArray[i, row];
+                    if (ncol == null)
+                    {
+                        el = this[i, row];
+                    }
+                    else
+                    {
+                        el = this[col, i];
+                    }
                 }
-                else
-                {
-                    el = matrixArray[col, i];
-                }
-                if (el.Type == Element.ElementType.Filled)
+
+                if (el != null && el.Type == Element.ElementType.Filled)
                 {
                     currentBlock++;
                 }
