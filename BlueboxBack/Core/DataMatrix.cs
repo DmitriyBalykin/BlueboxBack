@@ -169,5 +169,11 @@ namespace BlueboxBack.Core
             list.Reverse();
             return list;
         }
+        public List<short> GetCountersListReversed(short? nrow, short? ncol)
+        {
+            List<short> list = GetCountersList(nrow, ncol);
+            list.Reverse();
+            return list;
+        }
     }
 }

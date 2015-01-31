@@ -68,7 +68,7 @@ namespace BlueboxBack.UI
             for (short i = 0; i < matrix.Height; i++)
             {
                 short j = Constants.HEADER_SIZING / 20;
-                foreach (short s in matrix.GetCountersListSorted(i, null))
+                foreach (short s in matrix.GetCountersListReversed(i, null))
                 {
                     PointF point = new PointF((j - 1) * 20 - 5, i * Constants.CELL_SIDE);
                     j--;
@@ -85,7 +85,7 @@ namespace BlueboxBack.UI
             for (short i = 0; i < matrix.Width; i++)
             {
                 short j = Constants.HEADER_SIZING/20;
-                foreach(short s in matrix.GetCountersListSorted(null, i))
+                foreach(short s in matrix.GetCountersListReversed(null, i))
                 {
                     PointF point = new PointF(i * Constants.CELL_SIDE, (j - 1) * 20);
                     j--;
