@@ -20,7 +20,7 @@ namespace BlueboxBack.Utilities
         private static int space_density = SPACE_DENSITY;
         private static int group_density = GROUP_DENSITY;
 
-        public static DataMatrix GetRandomMatrix(short width, short height)
+        public static DataMatrix GetRandomMatrix(int width, int height)
         {
             DataMatrix m1 = GetRandomMatrixBase(width, height);
             //DataMatrix m2 = GetRandomMatrixBase(width, height);

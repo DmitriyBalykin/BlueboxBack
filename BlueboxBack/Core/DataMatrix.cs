@@ -81,7 +81,7 @@ namespace BlueboxBack.Core
             {
                 for (int j = 0; j < m1.Height;j++)
                 {
-                    if(m1[i, j] != m2[i, j])
+                    if(m1[i, j].Type != m2[i, j].Type)
                     {
                         return false;
                     }

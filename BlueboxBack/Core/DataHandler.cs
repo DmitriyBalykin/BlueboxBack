@@ -1,4 +1,5 @@
-﻿using BlueboxBack.UI.Components;
+﻿using BlueboxBack.UI;
+using BlueboxBack.UI.Components;
 using BlueboxBack.Utilities;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace BlueboxBack.Core
                 Manager.GetSolutionMatrix(),
                 ResultEvent.ResultType.Unpublished
                 ));
+            Drawer.Reset();
         }
         public void GenerateNewSolution()
         {

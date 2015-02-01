@@ -60,6 +60,10 @@ namespace BlueboxBack.UI
             }
             Draw(pictureBox, dataMatrix, solutionMatrix);
         }
+        public static void Reset()
+        {
+            FilledBrush = BasicTheme.FilledBrushDefault;
+        }
 
         private static void DrawVerticalHeader(Graphics g, DataMatrix matrix)
         {
@@ -70,10 +74,11 @@ namespace BlueboxBack.UI
                 short j = Constants.HEADER_SIZING / 20;
                 foreach (short s in matrix.GetCountersListReversed(i, null))
                 {
-                    PointF point = new PointF((j - 1) * 20 - 5, i * Constants.CELL_SIDE);
+                    PointF point = new PointF((j - 1) * 20, i * Constants.CELL_SIDE + 2);
                     j--;
                     g.DrawString(String.Format("{0,2}", s), HeaderFont, Brushes.Black, point);
                 }
+                g.DrawString((i+1).ToString(), HeaderFont, Brushes.Blue, new PointF(3, i * Constants.CELL_SIDE + 2));
                 g.DrawLine(GridPen,0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING, i * Constants.CELL_SIDE);
             }
         }
@@ -91,6 +96,7 @@ namespace BlueboxBack.UI
                     j--;
                     g.DrawString(String.Format("{0,2}  ", s), HeaderFont, Brushes.Black, point);
                 }
+                g.DrawString((i+1).ToString(), HeaderFont, Brushes.Blue, new PointF(i * Constants.CELL_SIDE, 3));
                 g.DrawLine(GridPen, i * Constants.CELL_SIDE, 0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING);
             }
         }

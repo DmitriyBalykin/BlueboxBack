@@ -55,8 +55,8 @@ namespace BlueboxBack.Utilities
         }
         internal void GenerateNewSolution()
         {
-            dataMatrix = new DataMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT);
-            solutionMatrix = RandomMatrixGenerator.GetRandomMatrix(Constants.MATRIX_WIDTH, Constants.MATRIX_HEIGHT);
+            dataMatrix = new DataMatrix(Settings.MatrixSize, Settings.MatrixSize);
+            solutionMatrix = RandomMatrixGenerator.GetRandomMatrix(Settings.MatrixSize, Settings.MatrixSize);
         }
 
         private DataMatrix CalculateLeftHeaderClicked(DataMatrix matrix, ActionTypes actionTypes, int x, int y)
