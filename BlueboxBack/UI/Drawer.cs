@@ -96,7 +96,7 @@ namespace BlueboxBack.UI
                     j--;
                     g.DrawString(String.Format("{0,2}  ", s), HeaderFont, Brushes.Black, point);
                 }
-                g.DrawString((i+1).ToString(), HeaderFont, Brushes.Blue, new PointF(i * Constants.CELL_SIDE, 3));
+                g.DrawString(String.Format("{0,2}  ", (i + 1)), HeaderFont, Brushes.Blue, new PointF(i * Constants.CELL_SIDE, 3));
                 g.DrawLine(GridPen, i * Constants.CELL_SIDE, 0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING);
             }
         }

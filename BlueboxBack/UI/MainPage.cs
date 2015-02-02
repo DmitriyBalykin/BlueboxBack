@@ -29,7 +29,7 @@ namespace BlueboxBack.UI
 
             leftHeaderBox = new Box(BoxTypes.HeaderVertical, dataHandler, Settings.MatrixSize * Constants.CELL_SIDE);
             topHeaderBox = new Box(BoxTypes.HeaderHorizontal, dataHandler, Settings.MatrixSize * Constants.CELL_SIDE);
-            gridBox = new Box(BoxTypes.Grid, dataHandler, Settings.MatrixSize * Constants.CELL_SIDE, Settings.MatrixSize * Constants.CELL_SIDE);
+            gridBox = new Box(BoxTypes.Grid, dataHandler, Settings.MatrixSize * Constants.CELL_SIDE);
 
             layoutPanel.Controls.Add(topHeaderBox, 1, 0);
             layoutPanel.Controls.Add(leftHeaderBox, 0, 1);
@@ -40,8 +40,9 @@ namespace BlueboxBack.UI
 
         private void HandleBoxsSize()
         {
-            layoutPanel.Width = Constants.HEADER_SIZING + 10 + Settings.MatrixSize * Constants.CELL_SIDE;
-            layoutPanel.Height = Constants.HEADER_SIZING + 10 + Settings.MatrixSize * Constants.CELL_SIDE;
+            leftHeaderBox.SetSize(BoxTypes.HeaderVertical, Settings.MatrixSize * Constants.CELL_SIDE);
+            topHeaderBox.SetSize(BoxTypes.HeaderHorizontal, Settings.MatrixSize * Constants.CELL_SIDE);
+            gridBox.SetSize(BoxTypes.Grid, Settings.MatrixSize * Constants.CELL_SIDE);
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,22 +58,22 @@ namespace BlueboxBack.UI
         private void easyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.MatrixSize = Constants.MATRIX_SIZE_EASY;
-            dataHandler.GenerateNewSolution();
             HandleBoxsSize();
+            dataHandler.GenerateNewSolution();
         }
 
         private void mediumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.MatrixSize = Constants.MATRIX_SIZE_MEDIUM;
-            dataHandler.GenerateNewSolution();
             HandleBoxsSize();
+            dataHandler.GenerateNewSolution();
         }
 
         private void difficultToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.MatrixSize = Constants.MATRIX_SIZE_MASTER;
-            dataHandler.GenerateNewSolution();
             HandleBoxsSize();
+            dataHandler.GenerateNewSolution();
         }
     }
 }

@@ -13,20 +13,27 @@ namespace BlueboxBack.UI.Components
 
         DataHandler dataHandler;
         public BoxTypes type;
-        public Box(BoxTypes type, DataHandler dataHandler, int width, int height)
-        {
-            InitializeBox(type, dataHandler, width, height);
-        }
-
         public Box(BoxTypes boxType, DataHandler dataHandler, int actualSizing)
         {
+            InitializeBox(boxType, dataHandler);
+            SetSize(boxType, actualSizing);
+        }
+        public void SetSize(BoxTypes boxType, int size)
+        {
+            InitializeBox(boxType, dataHandler);
             switch (boxType)
-            { 
+            {
                 case BoxTypes.HeaderHorizontal:
-                    InitializeBox(boxType, dataHandler, actualSizing, Constants.HEADER_SIZING);
+                    Width = size;
+                    Height = Constants.HEADER_SIZING;
                     break;
                 case BoxTypes.HeaderVertical:
-                    InitializeBox(boxType, dataHandler, Constants.HEADER_SIZING, actualSizing);
+                    Width = Constants.HEADER_SIZING;
+                    Height = size;
+                    break;
+                case BoxTypes.Grid:
+                    Width = size;
+                    Height = size;
                     break;
             }
         }
@@ -40,7 +47,7 @@ namespace BlueboxBack.UI.Components
             }
         }
 
-        private void InitializeBox(BoxTypes type, DataHandler dataHandler, int width, int height)
+        private void InitializeBox(BoxTypes type, DataHandler dataHandler)
         {
             this.type = type;
             this.dataHandler = dataHandler;
@@ -52,9 +59,6 @@ namespace BlueboxBack.UI.Components
             dataHandler.DataUpdated += dataHandler_DataUpdated;
 
             dataHandler.Manager.ResultPublished += Manager_ResultPublished;
-
-            Width = width + 1;
-            Height = height + 1;
         }
 
         void Manager_ResultPublished(object sender, EventArgs e)
