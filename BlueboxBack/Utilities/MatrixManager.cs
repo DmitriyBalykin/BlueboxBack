@@ -27,7 +27,10 @@ namespace BlueboxBack.Utilities
 
         void MatrixManager_HintUsed(object sender, EventArgs e)
         {
-            hintsLeft--;
+            if (hintsLeft > 0 && Settings.Default.ShowLines)
+            {
+                hintsLeft--;
+            }
         }
         internal DataMatrix CalculateMatrix(BoxTypes type, ActionTypes actionTypes, int x, int y)
         {

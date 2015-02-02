@@ -57,7 +57,7 @@ namespace BlueboxBack.UI
             Settings.Default.MatrixSize = Constants.MATRIX_SIZE_EASY;
             Settings.Default.IsEasyGame = !Settings.Default.IsEasyGame;
             Settings.Default.IsMediumGame = false;
-            Settings.Default.IsEasyGame = false;
+            Settings.Default.IsHardGame = false;
             dataHandler.GenerateNewSolution();
         }
 
@@ -66,7 +66,7 @@ namespace BlueboxBack.UI
             Settings.Default.MatrixSize = Constants.MATRIX_SIZE_MEDIUM;
             Settings.Default.IsEasyGame = false;
             Settings.Default.IsMediumGame = !Settings.Default.IsMediumGame;
-            Settings.Default.IsEasyGame = false;
+            Settings.Default.IsHardGame = false;
             dataHandler.GenerateNewSolution();
         }
 
@@ -75,16 +75,18 @@ namespace BlueboxBack.UI
             Settings.Default.MatrixSize = Constants.MATRIX_SIZE_MASTER;
             Settings.Default.IsEasyGame = false;
             Settings.Default.IsMediumGame = false;
-            Settings.Default.IsEasyGame = !Settings.Default.IsEasyGame;
+            Settings.Default.IsHardGame = !Settings.Default.IsHardGame;
             dataHandler.GenerateNewSolution();
         }
         private void showLinesToolStripMenuItem_CheckedChanged(object sender, System.EventArgs e)
         {
             Settings.Default.ShowLines = !Settings.Default.ShowLines;
+            dataHandler.Refresh();
         }
         private void highlightHeadersToolStripMenuItem_CheckedChanged(object sender, System.EventArgs e)
         {
             Settings.Default.HighlightHeaders = !Settings.Default.HighlightHeaders;
+            dataHandler.Refresh();
         }
     }
 }
