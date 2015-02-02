@@ -12,5 +12,6 @@ namespace BlueboxBack.Core
         public const short CELL_SIDE = 20; //px
         public const int HEADER_SIZING = 150; //px
         public static int MAX_ELEMENTS = 6;
+        public const int HINTS_NUMBER = 5;
     }
 }

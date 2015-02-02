@@ -23,7 +23,26 @@ namespace BlueboxBack.UI
         private static Font HeaderFont = SystemFonts.MenuFont;
         public static void Draw(Box pictureBox, DataMatrix dataMatrix, DataMatrix solutionMatrix)
         {
-            Bitmap drawArea = new Bitmap(pictureBox.Size.Width, pictureBox.Size.Height);
+            int imageWidth = 0;
+            int imageHeight = 0;
+
+            switch (pictureBox.type)
+            {
+                case BoxTypes.Grid:
+                    imageWidth = dataMatrix.Width * Constants.CELL_SIDE;
+                    imageHeight = dataMatrix.Height * Constants.CELL_SIDE;
+                    break;
+                case BoxTypes.HeaderHorizontal:
+                    imageWidth = dataMatrix.Width * Constants.CELL_SIDE;
+                    imageHeight = Constants.HEADER_SIZING;
+                    break;
+                case BoxTypes.HeaderVertical:
+                    imageWidth = Constants.HEADER_SIZING;
+                    imageHeight = dataMatrix.Height * Constants.CELL_SIDE;
+                    break;
+            }
+
+            Bitmap drawArea = new Bitmap(imageWidth, imageHeight);
             pictureBox.Image = drawArea;
 
             Graphics g = Graphics.FromImage(drawArea);

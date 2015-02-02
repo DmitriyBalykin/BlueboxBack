@@ -28,20 +28,17 @@ namespace BlueboxBack.UI
             dataHandler = new DataHandler();
 
             leftHeaderBox = new Box(BoxTypes.HeaderVertical, dataHandler, Settings.MatrixSize * Constants.CELL_SIDE);
+            leftHeaderBox.SizeMode = PictureBoxSizeMode.AutoSize;
             topHeaderBox = new Box(BoxTypes.HeaderHorizontal, dataHandler, Settings.MatrixSize * Constants.CELL_SIDE);
+            topHeaderBox.SizeMode = PictureBoxSizeMode.AutoSize;
             gridBox = new Box(BoxTypes.Grid, dataHandler, Settings.MatrixSize * Constants.CELL_SIDE, Settings.MatrixSize * Constants.CELL_SIDE);
+            gridBox.SizeMode = PictureBoxSizeMode.AutoSize;
 
             layoutPanel.Controls.Add(topHeaderBox, 1, 0);
             layoutPanel.Controls.Add(leftHeaderBox, 0, 1);
             layoutPanel.Controls.Add(gridBox, 1, 1);
 
             dataHandler.Refresh();
-        }
-
-        private void HandleBoxsSize()
-        {
-            layoutPanel.Width = Constants.HEADER_SIZING + 10 + Settings.MatrixSize * Constants.CELL_SIDE;
-            layoutPanel.Height = Constants.HEADER_SIZING + 10 + Settings.MatrixSize * Constants.CELL_SIDE;
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -58,21 +55,18 @@ namespace BlueboxBack.UI
         {
             Settings.MatrixSize = Constants.MATRIX_SIZE_EASY;
             dataHandler.GenerateNewSolution();
-            HandleBoxsSize();
         }
 
         private void mediumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.MatrixSize = Constants.MATRIX_SIZE_MEDIUM;
             dataHandler.GenerateNewSolution();
-            HandleBoxsSize();
         }
 
         private void difficultToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.MatrixSize = Constants.MATRIX_SIZE_MASTER;
             dataHandler.GenerateNewSolution();
-            HandleBoxsSize();
         }
     }
 }

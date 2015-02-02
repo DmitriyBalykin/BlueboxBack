@@ -53,8 +53,8 @@ namespace BlueboxBack.UI.Components
 
             dataHandler.Manager.ResultPublished += Manager_ResultPublished;
 
-            Width = width + 1;
-            Height = height + 1;
+            Width = width;
+            Height = height;
         }
 
         void Manager_ResultPublished(object sender, EventArgs e)
