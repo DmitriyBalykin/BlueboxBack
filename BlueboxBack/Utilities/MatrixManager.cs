@@ -3,6 +3,7 @@ using BlueboxBack.UI.Components;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace BlueboxBack.Utilities
 {
@@ -13,9 +14,18 @@ namespace BlueboxBack.Utilities
 
         public event EventHandler ResultPublished;
         public event EventHandler HintUsed;
+
+        private int hintsLeft = Constants.HINTS_NUMBER;
         public MatrixManager()
         {
             GenerateNewSolution();
+
+            HintUsed += MatrixManager_HintUsed;
+        }
+
+        void MatrixManager_HintUsed(object sender, EventArgs e)
+        {
+            hintsLeft--;
         }
         internal DataMatrix CalculateMatrix(BoxTypes type, ActionTypes actionTypes, int x, int y)
         {
@@ -55,6 +65,7 @@ namespace BlueboxBack.Utilities
         }
         internal void GenerateNewSolution()
         {
+            hintsLeft = Constants.HINTS_NUMBER;
             dataMatrix = new DataMatrix(Settings.MatrixSize, Settings.MatrixSize);
             solutionMatrix = RandomMatrixGenerator.GetRandomMatrix(Settings.MatrixSize, Settings.MatrixSize);
         }
@@ -100,6 +111,11 @@ namespace BlueboxBack.Utilities
         }
         private void ShowLine(DataMatrix matrix)
         {
+            if(hintsLeft <= 0)
+            {
+                MessageBox.Show("Извините, подсказки закончились.");
+                return;
+            }
             if(matrix.HighlightedRow != null)
             {
                 int row = matrix.HighlightedRow ?? -1;
