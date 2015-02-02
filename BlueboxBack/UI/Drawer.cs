@@ -1,6 +1,9 @@
 ﻿using BlueboxBack.Core;
+using BlueboxBack.Helpers;
+using BlueboxBack.Properties;
 using BlueboxBack.UI.Components;
 using BlueboxBack.UI.Themes;
+using BlueboxBack.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -20,8 +23,9 @@ namespace BlueboxBack.UI
         private static Brush HeaderForeground = BasicTheme.HeaderForeground;
         private static Pen GridPen = BasicTheme.GridPen;
         private static Pen GridPenThick = BasicTheme.GridPenThich;
-
-        private static Font HeaderFont = SystemFonts.MenuFont;
+        private static Brush HeaderFontBrush = BasicTheme.HeaderBrush;
+        private static Brush HeaderFontBrushHighlighted = BasicTheme.HeaderBrushHighlighted;
+        private static Font HeaderFont = BasicTheme.HeaderFont;
         public static void Draw(Box pictureBox, DataMatrix dataMatrix, DataMatrix solutionMatrix)
         {
             int imageWidth = 0;
@@ -54,10 +58,10 @@ namespace BlueboxBack.UI
                     DrawGrid(g, dataMatrix);
                     break;
                 case BoxTypes.HeaderHorizontal:
-                    DrawHorizontalHeader(g, solutionMatrix);
+                    DrawHorizontalHeader(g, dataMatrix, solutionMatrix);
                     break;
                 case BoxTypes.HeaderVertical:
-                    DrawVerticalHeader(g, solutionMatrix);
+                    DrawVerticalHeader(g, dataMatrix, solutionMatrix);
                     break;
             }
 
@@ -85,36 +89,38 @@ namespace BlueboxBack.UI
             FilledBrush = BasicTheme.FilledBrushDefault;
         }
 
-        private static void DrawVerticalHeader(Graphics g, DataMatrix matrix)
+        private static void DrawVerticalHeader(Graphics g, DataMatrix dataMatrix, DataMatrix solutionMatrix)
         {
             g.FillRectangle(HeaderBackground, g.ClipBounds);
 
-            for (short i = 0; i < matrix.Height; i++)
+            for (short i = 0; i < solutionMatrix.Height; i++)
             {
                 short j = Constants.HEADER_SIZING / 20;
-                foreach (short s in matrix.GetCountersListReversed(i, null))
+                foreach (CellsBlock block in solutionMatrix.GetCountersListReversed(i, null))
                 {
                     PointF point = new PointF((j - 1) * 20, i * Constants.CELL_SIDE + 2);
                     j--;
-                    g.DrawString(String.Format("{0,2}", s), HeaderFont, Brushes.Black, point);
+                    g.DrawString(String.Format("{0,2}", block.Length), GetHeaderFont(null, i, block, dataMatrix), GetHeaderBrush(i, null, block, dataMatrix), point);
                 }
                 g.DrawString((i+1).ToString(), HeaderFont, Brushes.Blue, new PointF(3, i * Constants.CELL_SIDE + 2));
                 g.DrawLine(GetGridPen(i), 0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING, i * Constants.CELL_SIDE);
             }
         }
 
-        private static void DrawHorizontalHeader(Graphics g, DataMatrix matrix)
+
+
+        private static void DrawHorizontalHeader(Graphics g, DataMatrix dataMatrix, DataMatrix solutionMatrix)
         {
             g.FillRectangle(HeaderBackground, g.ClipBounds);
 
-            for (short i = 0; i < matrix.Width; i++)
+            for (short i = 0; i < solutionMatrix.Width; i++)
             {
                 short j = Constants.HEADER_SIZING/20;
-                foreach(short s in matrix.GetCountersListReversed(null, i))
+                foreach (CellsBlock block in solutionMatrix.GetCountersListReversed(null, i))
                 {
                     PointF point = new PointF(i * Constants.CELL_SIDE, (j - 1) * 20);
                     j--;
-                    g.DrawString(String.Format("{0,2}  ", s), HeaderFont, Brushes.Black, point);
+                    g.DrawString(String.Format("{0,2}  ", block.Length), GetHeaderFont(null, i, block, dataMatrix), GetHeaderBrush(null, i, block, dataMatrix), point);
                 }
                 g.DrawString((i+1).ToString(), HeaderFont, Brushes.Blue, new PointF(i * Constants.CELL_SIDE, 3));
                 g.DrawLine(GetGridPen(i), i * Constants.CELL_SIDE, 0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING);
@@ -176,7 +182,28 @@ namespace BlueboxBack.UI
             {
                 return GridPen;
             }
-
+        }
+        private static Brush GetHeaderBrush(short? i, short? j, CellsBlock block, DataMatrix matrixToCompare)
+        {
+            if (MatrixManager.IsBlockOpened(i, j, block, matrixToCompare) && Settings.Default.HighlightHeaders)
+            {
+                return BasicTheme.HeaderBrushHighlighted;
+            }
+            else
+            {
+                return BasicTheme.HeaderBrush;
+            }
+        }
+        private static Font GetHeaderFont(short? i, short? j, CellsBlock block, DataMatrix matrixToCompare)
+        {
+            if (MatrixManager.IsBlockOpened(i, j, block, matrixToCompare) && Settings.Default.HighlightHeaders)
+            {
+                return BasicTheme.HeaderFontHighlighted;
+            }
+            else
+            {
+                return BasicTheme.HeaderFont;
+            }
         }
     }
 }

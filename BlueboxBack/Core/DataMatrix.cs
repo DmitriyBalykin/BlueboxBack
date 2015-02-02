@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlueboxBack.Helpers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -118,10 +119,9 @@ namespace BlueboxBack.Core
             return false;
         }
 
-        public List<short> GetCountersList(short? nrow, short? ncol)
+        public List<CellsBlock> GetCountersList(short? nrow, short? ncol)
         {
-            List<short> list = new List<short>();
-            short currentBlock = 0;
+            List<CellsBlock> list = new List<CellsBlock>();
             short limit = 0;
             short row = 0, col = 0;
             if(ncol == null)
@@ -135,9 +135,10 @@ namespace BlueboxBack.Core
                 limit = Width;
             }
             limit++; // iterate one more step at the end to count last block
+            CellsBlock currentBlock = null;
+            Element el = null;
             for (int i = 0; i < limit; i++)
             {
-                Element el = null;
                 if(i < limit - 1)
                 {
                     if (ncol == null)
@@ -152,26 +153,31 @@ namespace BlueboxBack.Core
 
                 if (el != null && el.Type == Element.ElementType.Filled)
                 {
-                    currentBlock++;
+                    if(currentBlock == null)
+                    {
+                        currentBlock = new CellsBlock() { StartPosition = i };
+                    }
+                    currentBlock.Length++;
+                    el = null;
                 }
-                else if(currentBlock > 0)
+                else if(currentBlock != null)
                 {
-                    list.Add(currentBlock);
-                    currentBlock = 0;
+                    list.Add(new CellsBlock(currentBlock));
+                    currentBlock = null;
                 }
             }
             return list;
         }
-        public List<short> GetCountersListSorted(short? nrow, short? ncol)
+        public List<CellsBlock> GetCountersListSorted(short? nrow, short? ncol)
         {
-            List<short> list = GetCountersList(nrow, ncol);
+            List<CellsBlock> list = GetCountersList(nrow, ncol);
             list.Sort();
             list.Reverse();
             return list;
         }
-        public List<short> GetCountersListReversed(short? nrow, short? ncol)
+        public List<CellsBlock> GetCountersListReversed(short? nrow, short? ncol)
         {
-            List<short> list = GetCountersList(nrow, ncol);
+            List<CellsBlock> list = GetCountersList(nrow, ncol);
             list.Reverse();
             return list;
         }

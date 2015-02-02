@@ -1,4 +1,6 @@
 ﻿using BlueboxBack.Core;
+using BlueboxBack.Helpers;
+using BlueboxBack.Properties;
 using BlueboxBack.UI.Components;
 using System;
 using System.Collections.Generic;
@@ -59,6 +61,19 @@ namespace BlueboxBack.Utilities
             return dataMatrix;
         }
 
+        public static bool IsBlockOpened(short? i, short? j, CellsBlock block, DataMatrix matrixToCompare)
+        {
+            List<CellsBlock> referenceList = matrixToCompare.GetCountersListReversed(i, j);
+            foreach (CellsBlock refBlock in referenceList)
+            {
+                if (refBlock.StartPosition == block.StartPosition && refBlock.Length == block.Length)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         internal DataMatrix GetDataMatrix()
         {
             return dataMatrix;
@@ -66,8 +81,8 @@ namespace BlueboxBack.Utilities
         internal void GenerateNewSolution()
         {
             hintsLeft = Constants.HINTS_NUMBER;
-            dataMatrix = new DataMatrix(Settings.MatrixSize, Settings.MatrixSize);
-            solutionMatrix = RandomMatrixGenerator.GetRandomMatrix(Settings.MatrixSize, Settings.MatrixSize);
+            dataMatrix = new DataMatrix(Settings.Default.MatrixSize, Settings.Default.MatrixSize);
+            solutionMatrix = RandomMatrixGenerator.GetRandomMatrix(Settings.Default.MatrixSize, Settings.Default.MatrixSize);
         }
 
         private DataMatrix CalculateLeftHeaderClicked(DataMatrix matrix, ActionTypes actionTypes, int x, int y)
@@ -111,9 +126,9 @@ namespace BlueboxBack.Utilities
         }
         private void ShowLine(DataMatrix matrix)
         {
-            if(hintsLeft <= 0)
+            if(hintsLeft <= 0 || !Settings.Default.ShowLines)
             {
-                MessageBox.Show("Извините, подсказки закончились.");
+                MessageBox.Show("Извините, подсказок больше нет.");
                 return;
             }
             if(matrix.HighlightedRow != null)

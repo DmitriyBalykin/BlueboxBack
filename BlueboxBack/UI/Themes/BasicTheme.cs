@@ -18,5 +18,9 @@ namespace BlueboxBack.UI.Themes
         public static Brush HeaderForeground = Brushes.Black;
         public static Pen GridPen = new Pen(Color.FromArgb(0xf0, 0xf0, 0xf0), 1);
         public static Pen GridPenThich = new Pen(Color.FromArgb(0xff, 0xff, 0xff), 2);
+        public static Font HeaderFont = SystemFonts.MenuFont;
+        public static Brush HeaderBrush = Brushes.Black;
+        public static Brush HeaderBrushHighlighted = Brushes.Green;
+        public static Font HeaderFontHighlighted = new Font(HeaderFont, FontStyle.Bold);
     }
 }

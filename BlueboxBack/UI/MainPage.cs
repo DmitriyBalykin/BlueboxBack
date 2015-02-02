@@ -1,4 +1,5 @@
 ﻿using BlueboxBack.Core;
+using BlueboxBack.Properties;
 using BlueboxBack.UI.Components;
 using BlueboxBack.Utilities;
 using System;
@@ -27,11 +28,11 @@ namespace BlueboxBack.UI
         {
             dataHandler = new DataHandler();
 
-            leftHeaderBox = new Box(BoxTypes.HeaderVertical, dataHandler, Settings.MatrixSize * Constants.CELL_SIDE);
+            leftHeaderBox = new Box(BoxTypes.HeaderVertical, dataHandler, Settings.Default.MatrixSize * Constants.CELL_SIDE);
             leftHeaderBox.SizeMode = PictureBoxSizeMode.AutoSize;
-            topHeaderBox = new Box(BoxTypes.HeaderHorizontal, dataHandler, Settings.MatrixSize * Constants.CELL_SIDE);
+            topHeaderBox = new Box(BoxTypes.HeaderHorizontal, dataHandler, Settings.Default.MatrixSize * Constants.CELL_SIDE);
             topHeaderBox.SizeMode = PictureBoxSizeMode.AutoSize;
-            gridBox = new Box(BoxTypes.Grid, dataHandler, Settings.MatrixSize * Constants.CELL_SIDE, Settings.MatrixSize * Constants.CELL_SIDE);
+            gridBox = new Box(BoxTypes.Grid, dataHandler, Settings.Default.MatrixSize * Constants.CELL_SIDE, Settings.Default.MatrixSize * Constants.CELL_SIDE);
             gridBox.SizeMode = PictureBoxSizeMode.AutoSize;
 
             layoutPanel.Controls.Add(topHeaderBox, 1, 0);
@@ -53,19 +54,19 @@ namespace BlueboxBack.UI
 
         private void easyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Settings.MatrixSize = Constants.MATRIX_SIZE_EASY;
+            Settings.Default.MatrixSize = Constants.MATRIX_SIZE_EASY;
             dataHandler.GenerateNewSolution();
         }
 
         private void mediumToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Settings.MatrixSize = Constants.MATRIX_SIZE_MEDIUM;
+            Settings.Default.MatrixSize = Constants.MATRIX_SIZE_MEDIUM;
             dataHandler.GenerateNewSolution();
         }
 
         private void difficultToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Settings.MatrixSize = Constants.MATRIX_SIZE_MASTER;
+            Settings.Default.MatrixSize = Constants.MATRIX_SIZE_MASTER;
             dataHandler.GenerateNewSolution();
         }
     }

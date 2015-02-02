@@ -33,15 +33,18 @@ namespace BlueboxBack.UI
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.additionalHintsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.levelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.easyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.difficultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.layoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.showLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.highlightHeadersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.easyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.difficultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,19 +63,29 @@ namespace BlueboxBack.UI
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
+            this.additionalHintsToolStripMenuItem,
             this.levelToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.fileToolStripMenuItem.Text = "Меню";
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.newToolStripMenuItem.Text = "Новая игра";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // additionalHintsToolStripMenuItem
+            // 
+            this.additionalHintsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showLinesToolStripMenuItem,
+            this.highlightHeadersToolStripMenuItem});
+            this.additionalHintsToolStripMenuItem.Name = "additionalHintsToolStripMenuItem";
+            this.additionalHintsToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.additionalHintsToolStripMenuItem.Text = "Дополнительные подсказки";
             // 
             // levelToolStripMenuItem
             // 
@@ -81,39 +94,18 @@ namespace BlueboxBack.UI
             this.mediumToolStripMenuItem,
             this.difficultToolStripMenuItem});
             this.levelToolStripMenuItem.Name = "levelToolStripMenuItem";
-            this.levelToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.levelToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.levelToolStripMenuItem.Text = "Сложность";
-            // 
-            // easyToolStripMenuItem
-            // 
-            this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
-            this.easyToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.easyToolStripMenuItem.Text = "Легкая";
-            this.easyToolStripMenuItem.Click += new System.EventHandler(this.easyToolStripMenuItem_Click);
-            // 
-            // mediumToolStripMenuItem
-            // 
-            this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
-            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.mediumToolStripMenuItem.Text = "Средняя";
-            this.mediumToolStripMenuItem.Click += new System.EventHandler(this.mediumToolStripMenuItem_Click);
-            // 
-            // difficultToolStripMenuItem
-            // 
-            this.difficultToolStripMenuItem.Name = "difficultToolStripMenuItem";
-            this.difficultToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.difficultToolStripMenuItem.Text = "Сложная";
-            this.difficultToolStripMenuItem.Click += new System.EventHandler(this.difficultToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(128, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(226, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.exitToolStripMenuItem.Text = "Выход";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
             // 
@@ -122,13 +114,13 @@ namespace BlueboxBack.UI
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.helpToolStripMenuItem.Text = "Помощь";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.aboutToolStripMenuItem.Text = "О программе";
             // 
             // layoutPanel
@@ -147,6 +139,51 @@ namespace BlueboxBack.UI
             this.layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutPanel.Size = new System.Drawing.Size(150, 150);
             this.layoutPanel.TabIndex = 1;
+            // 
+            // showLinesToolStripMenuItem
+            // 
+            this.showLinesToolStripMenuItem.Checked = global::BlueboxBack.Properties.Settings.Default.ShowLines;
+            this.showLinesToolStripMenuItem.CheckOnClick = true;
+            this.showLinesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showLinesToolStripMenuItem.Name = "showLinesToolStripMenuItem";
+            this.showLinesToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.showLinesToolStripMenuItem.Text = "Показывать строки";
+            // 
+            // highlightHeadersToolStripMenuItem
+            // 
+            this.highlightHeadersToolStripMenuItem.Checked = global::BlueboxBack.Properties.Settings.Default.HighlightHeaders;
+            this.highlightHeadersToolStripMenuItem.CheckOnClick = true;
+            this.highlightHeadersToolStripMenuItem.Name = "highlightHeadersToolStripMenuItem";
+            this.highlightHeadersToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.highlightHeadersToolStripMenuItem.Text = "Подсвечивать заголовки";
+            // 
+            // easyToolStripMenuItem
+            // 
+            this.easyToolStripMenuItem.Checked = global::BlueboxBack.Properties.Settings.Default.IsEasyGame;
+            this.easyToolStripMenuItem.CheckOnClick = true;
+            this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
+            this.easyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.easyToolStripMenuItem.Text = "Легкая";
+            this.easyToolStripMenuItem.Click += new System.EventHandler(this.easyToolStripMenuItem_Click);
+            // 
+            // mediumToolStripMenuItem
+            // 
+            this.mediumToolStripMenuItem.Checked = global::BlueboxBack.Properties.Settings.Default.IsMediumGame;
+            this.mediumToolStripMenuItem.CheckOnClick = true;
+            this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
+            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mediumToolStripMenuItem.Text = "Средняя";
+            this.mediumToolStripMenuItem.Click += new System.EventHandler(this.mediumToolStripMenuItem_Click);
+            // 
+            // difficultToolStripMenuItem
+            // 
+            this.difficultToolStripMenuItem.Checked = global::BlueboxBack.Properties.Settings.Default.IsHardGame;
+            this.difficultToolStripMenuItem.CheckOnClick = true;
+            this.difficultToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.difficultToolStripMenuItem.Name = "difficultToolStripMenuItem";
+            this.difficultToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.difficultToolStripMenuItem.Text = "Сложная";
+            this.difficultToolStripMenuItem.Click += new System.EventHandler(this.difficultToolStripMenuItem_Click);
             // 
             // MainPage
             // 
@@ -184,5 +221,8 @@ namespace BlueboxBack.UI
         private System.Windows.Forms.ToolStripMenuItem mediumToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem difficultToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem additionalHintsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showLinesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem highlightHeadersToolStripMenuItem;
     }
 }
