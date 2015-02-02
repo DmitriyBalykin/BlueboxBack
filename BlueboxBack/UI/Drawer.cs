@@ -19,6 +19,7 @@ namespace BlueboxBack.UI
         private static Brush HeaderBackground = BasicTheme.HeaderBackground;
         private static Brush HeaderForeground = BasicTheme.HeaderForeground;
         private static Pen GridPen = BasicTheme.GridPen;
+        private static Pen GridPenThick = BasicTheme.GridPenThich;
 
         private static Font HeaderFont = SystemFonts.MenuFont;
         public static void Draw(Box pictureBox, DataMatrix dataMatrix, DataMatrix solutionMatrix)
@@ -98,7 +99,7 @@ namespace BlueboxBack.UI
                     g.DrawString(String.Format("{0,2}", s), HeaderFont, Brushes.Black, point);
                 }
                 g.DrawString((i+1).ToString(), HeaderFont, Brushes.Blue, new PointF(3, i * Constants.CELL_SIDE + 2));
-                g.DrawLine(GridPen,0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING, i * Constants.CELL_SIDE);
+                g.DrawLine(GetGridPen(i), 0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING, i * Constants.CELL_SIDE);
             }
         }
 
@@ -116,7 +117,7 @@ namespace BlueboxBack.UI
                     g.DrawString(String.Format("{0,2}  ", s), HeaderFont, Brushes.Black, point);
                 }
                 g.DrawString((i+1).ToString(), HeaderFont, Brushes.Blue, new PointF(i * Constants.CELL_SIDE, 3));
-                g.DrawLine(GridPen, i * Constants.CELL_SIDE, 0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING);
+                g.DrawLine(GetGridPen(i), i * Constants.CELL_SIDE, 0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING);
             }
         }
 
@@ -140,11 +141,11 @@ namespace BlueboxBack.UI
                 {
                     if (!horizLinesDrawn)
                     {
-                        g.DrawLine(GridPen, 0, j * side, matrix.Width * side, j * side); //horizontal line
+                        g.DrawLine(GetGridPen(j), 0, j * side, matrix.Width * side, j * side); //horizontal line
                     }
                 }
                 horizLinesDrawn = true;
-                g.DrawLine(GridPen, i * side, 0, i * side, matrix.Height * side); //vertical line
+                g.DrawLine(GetGridPen(i), i * side, 0, i * side, matrix.Height * side); //vertical line
             }
         }
 
@@ -164,6 +165,18 @@ namespace BlueboxBack.UI
                 default:
                     return Brushes.Red;
             }
+        }
+        private static Pen GetGridPen(int i)
+        {
+            if(i % Constants.THICK_GRID_STEP == 0)
+            {
+                return GridPenThick;
+            }
+            else
+            {
+                return GridPen;
+            }
+
         }
     }
 }

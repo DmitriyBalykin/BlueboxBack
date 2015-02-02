@@ -13,5 +13,6 @@ namespace BlueboxBack.Core
         public const int HEADER_SIZING = 150; //px
         public static int MAX_ELEMENTS = 6;
         public const int HINTS_NUMBER = 5;
+        public const int THICK_GRID_STEP = 5;
     }
 }

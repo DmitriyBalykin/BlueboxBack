@@ -16,6 +16,7 @@ namespace BlueboxBack.UI.Themes
         public static Brush HighlightedClearedBrush = new SolidBrush(Color.FromArgb(0xff, 0xea, 0xaa));
         public static Brush HeaderBackground = Brushes.LightGray;
         public static Brush HeaderForeground = Brushes.Black;
-        public static Pen GridPen = new Pen(Color.FromArgb(0xf0, 0xf0, 0xf0));
+        public static Pen GridPen = new Pen(Color.FromArgb(0xf0, 0xf0, 0xf0), 1);
+        public static Pen GridPenThich = new Pen(Color.FromArgb(0xff, 0xff, 0xff), 2);
     }
 }
