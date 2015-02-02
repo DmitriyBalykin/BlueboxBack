@@ -57,7 +57,9 @@ namespace BlueboxBack.UI
             Settings.Default.MatrixSize = Constants.MATRIX_SIZE_EASY;
             Settings.Default.IsEasyGame = !Settings.Default.IsEasyGame;
             Settings.Default.IsMediumGame = false;
+            this.mediumToolStripMenuItem.Checked = false;
             Settings.Default.IsHardGame = false;
+            this.difficultToolStripMenuItem.Checked = false;
             dataHandler.GenerateNewSolution();
         }
 
@@ -65,8 +67,10 @@ namespace BlueboxBack.UI
         {
             Settings.Default.MatrixSize = Constants.MATRIX_SIZE_MEDIUM;
             Settings.Default.IsEasyGame = false;
+            this.easyToolStripMenuItem.Checked = false;
             Settings.Default.IsMediumGame = !Settings.Default.IsMediumGame;
             Settings.Default.IsHardGame = false;
+            this.difficultToolStripMenuItem.Checked = false;
             dataHandler.GenerateNewSolution();
         }
 
@@ -74,7 +78,9 @@ namespace BlueboxBack.UI
         {
             Settings.Default.MatrixSize = Constants.MATRIX_SIZE_MASTER;
             Settings.Default.IsEasyGame = false;
+            this.easyToolStripMenuItem.Checked = false;
             Settings.Default.IsMediumGame = false;
+            this.mediumToolStripMenuItem.Checked = false;
             Settings.Default.IsHardGame = !Settings.Default.IsHardGame;
             dataHandler.GenerateNewSolution();
         }
