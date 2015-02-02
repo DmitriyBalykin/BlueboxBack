@@ -55,19 +55,36 @@ namespace BlueboxBack.UI
         private void easyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.Default.MatrixSize = Constants.MATRIX_SIZE_EASY;
+            Settings.Default.IsEasyGame = !Settings.Default.IsEasyGame;
+            Settings.Default.IsMediumGame = false;
+            Settings.Default.IsEasyGame = false;
             dataHandler.GenerateNewSolution();
         }
 
         private void mediumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.Default.MatrixSize = Constants.MATRIX_SIZE_MEDIUM;
+            Settings.Default.IsEasyGame = false;
+            Settings.Default.IsMediumGame = !Settings.Default.IsMediumGame;
+            Settings.Default.IsEasyGame = false;
             dataHandler.GenerateNewSolution();
         }
 
         private void difficultToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.Default.MatrixSize = Constants.MATRIX_SIZE_MASTER;
+            Settings.Default.IsEasyGame = false;
+            Settings.Default.IsMediumGame = false;
+            Settings.Default.IsEasyGame = !Settings.Default.IsEasyGame;
             dataHandler.GenerateNewSolution();
+        }
+        private void showLinesToolStripMenuItem_CheckedChanged(object sender, System.EventArgs e)
+        {
+            Settings.Default.ShowLines = !Settings.Default.ShowLines;
+        }
+        private void highlightHeadersToolStripMenuItem_CheckedChanged(object sender, System.EventArgs e)
+        {
+            Settings.Default.HighlightHeaders = !Settings.Default.HighlightHeaders;
         }
     }
 }
