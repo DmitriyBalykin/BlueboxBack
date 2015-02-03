@@ -47,3 +47,5 @@ BlueboxBack/obj/Debug/*.*
 BlueboxBack/obj/Release/*.*
 BlueboxBack/bin/Debug/*.*
 BlueboxBack/bin/Release/*.*
+BlueboxBack/Libs/D2DSharp
+BlueboxBack/Libs/BuildProcessTemplates
