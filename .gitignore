@@ -43,9 +43,7 @@ Temporary Items
 
 *.exe
 *.Cache
-BlueboxBack/obj/Debug/*.*
-BlueboxBack/obj/Release/*.*
-BlueboxBack/bin/Debug/*.*
-BlueboxBack/bin/Release/*.*
+BlueboxBack/obj
+BlueboxBack/bin
 BlueboxBack/Libs/D2DSharp
 BlueboxBack/Libs/BuildProcessTemplates

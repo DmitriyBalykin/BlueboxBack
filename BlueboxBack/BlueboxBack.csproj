@@ -54,6 +54,9 @@
     <ApplicationIcon>BlueboxBack.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="D2DWrapper">
+      <HintPath>Libs\dll\D2DWrapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -82,6 +85,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\Components\BoxTypes.cs" />
+    <Compile Include="UI\DrawerD2D.cs" />
     <Compile Include="UI\MainPage.cs">
       <SubType>Form</SubType>
     </Compile>
