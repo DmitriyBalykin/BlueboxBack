@@ -59,12 +59,35 @@ namespace BlueboxBack.Utilities
             List<CellsBlock> referenceList = matrixToCompare.GetCountersListReversed(i, j);
             foreach (CellsBlock refBlock in referenceList)
             {
-                if (refBlock.StartPosition == block.StartPosition && refBlock.Length == block.Length)
+                bool startCleared = IsElementCleared(i, j, (block.StartPosition - 1), matrixToCompare);
+                bool endCleared = IsElementCleared(i, j, (block.StartPosition + block.Length), matrixToCompare);
+                if (
+                    refBlock.StartPosition == block.StartPosition && startCleared &&
+                    refBlock.Length == block.Length && endCleared
+                    )
                 {
                     return true;
                 }
             }
             return false;
+        }
+        private static bool IsElementCleared(short? row, short? col, int pos, DataMatrix matrix)
+        {
+            int colInt = col ?? 0;
+            int rowInt = row ?? 0;
+
+            if (pos >= Settings.Default.MatrixSize || pos < 0)
+            {
+                return true;
+            }
+            if (row == null)
+            {
+                return matrix[colInt, pos].Type == Element.ElementType.Cleared;
+            }
+            else
+            {
+                return matrix[pos, rowInt].Type == Element.ElementType.Cleared;
+            }
         }
 
         internal DataMatrix GetDataMatrix()
