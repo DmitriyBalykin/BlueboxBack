@@ -100,15 +100,14 @@ namespace BlueboxBack.UI
                 {
                     PointF point = new PointF((j - 1) * 20, i * Constants.CELL_SIDE + 2);
                     j--;
-                    Brush brush = null;
-                    Font font = null;
-                    GetHeaderStyle(i, null, block, dataMatrix, out brush, out font);
-                    g.DrawString(String.Format("{0,2}", block.Length), font, brush, point);
+                    g.DrawString(String.Format("{0,2}", block.Length), GetHeaderFont(null, i, block, dataMatrix), GetHeaderBrush(i, null, block, dataMatrix), point);
                 }
                 g.DrawString((i+1).ToString(), HeaderFont, Brushes.Blue, new PointF(3, i * Constants.CELL_SIDE + 2));
                 g.DrawLine(GetGridPen(i), 0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING, i * Constants.CELL_SIDE);
             }
         }
+
+
 
         private static void DrawHorizontalHeader(Graphics g, DataMatrix dataMatrix, DataMatrix solutionMatrix)
         {
@@ -121,10 +120,7 @@ namespace BlueboxBack.UI
                 {
                     PointF point = new PointF(i * Constants.CELL_SIDE, (j - 1) * 20);
                     j--;
-                    Brush brush = null;
-                    Font font = null;
-                    GetHeaderStyle(null, i, block, dataMatrix, out brush, out font);
-                    g.DrawString(String.Format("{0,2}", block.Length), font, brush, point);
+                    g.DrawString(String.Format("{0,2}  ", block.Length), GetHeaderFont(null, i, block, dataMatrix), GetHeaderBrush(null, i, block, dataMatrix), point);
                 }
                 g.DrawString((i+1).ToString(), HeaderFont, Brushes.Blue, new PointF(i * Constants.CELL_SIDE, 3));
                 g.DrawLine(GetGridPen(i), i * Constants.CELL_SIDE, 0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING);
@@ -187,17 +183,26 @@ namespace BlueboxBack.UI
                 return GridPen;
             }
         }
-        private static void GetHeaderStyle(short? i, short? j, CellsBlock block, DataMatrix matrixToCompare, out Brush brush, out Font font)
+        private static Brush GetHeaderBrush(short? i, short? j, CellsBlock block, DataMatrix matrixToCompare)
         {
             if (MatrixManager.IsBlockOpened(i, j, block, matrixToCompare) && Settings.Default.HighlightHeaders)
             {
-                brush = BasicTheme.HeaderBrushHighlighted;
-                font = BasicTheme.HeaderFontHighlighted;
+                return BasicTheme.HeaderBrushHighlighted;
             }
             else
             {
-                brush = BasicTheme.HeaderBrush;
-                font = BasicTheme.HeaderFont;
+                return BasicTheme.HeaderBrush;
+            }
+        }
+        private static Font GetHeaderFont(short? i, short? j, CellsBlock block, DataMatrix matrixToCompare)
+        {
+            if (MatrixManager.IsBlockOpened(i, j, block, matrixToCompare) && Settings.Default.HighlightHeaders)
+            {
+                return BasicTheme.HeaderFontHighlighted;
+            }
+            else
+            {
+                return BasicTheme.HeaderFont;
             }
         }
     }
