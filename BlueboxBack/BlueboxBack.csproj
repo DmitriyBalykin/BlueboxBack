@@ -64,11 +64,12 @@
     <Compile Include="Core\ActionTypes.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\DataHandler.cs" />
-    <Compile Include="Core\DataUpdatedEventArgs.cs" />
+    <Compile Include="Core\Events\DataUpdatedEventArgs.cs" />
     <Compile Include="Core\Element.cs" />
     <Compile Include="Core\ElementStateMatrix.cs" />
     <Compile Include="Core\DataMatrix.cs" />
-    <Compile Include="Core\ResultEventArgs.cs" />
+    <Compile Include="Core\Events\HintUsedEventArgs.cs" />
+    <Compile Include="Core\Events\ResultEventArgs.cs" />
     <Compile Include="Helpers\CellsBlock.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

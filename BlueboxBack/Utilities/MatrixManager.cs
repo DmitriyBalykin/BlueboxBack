@@ -17,20 +17,10 @@ namespace BlueboxBack.Utilities
         public event EventHandler ResultPublished;
         public event EventHandler HintUsed;
 
-        private int hintsLeft = Constants.HINTS_NUMBER;
+        public int HintsLeft = Constants.HINTS_NUMBER;
         public MatrixManager()
         {
             GenerateNewSolution();
-
-            HintUsed += MatrixManager_HintUsed;
-        }
-
-        void MatrixManager_HintUsed(object sender, EventArgs e)
-        {
-            if (hintsLeft > 0 && Settings.Default.ShowLines)
-            {
-                hintsLeft--;
-            }
         }
         internal DataMatrix CalculateMatrix(BoxTypes type, ActionTypes actionTypes, int x, int y)
         {
@@ -83,7 +73,7 @@ namespace BlueboxBack.Utilities
         }
         internal void GenerateNewSolution()
         {
-            hintsLeft = Constants.HINTS_NUMBER;
+            HintsLeft = Constants.HINTS_NUMBER;
             dataMatrix = new DataMatrix(Settings.Default.MatrixSize, Settings.Default.MatrixSize);
             solutionMatrix = RandomMatrixGenerator.GetRandomMatrix(Settings.Default.MatrixSize, Settings.Default.MatrixSize);
         }
@@ -95,10 +85,7 @@ namespace BlueboxBack.Utilities
                 matrix.HighlightedRow = y / Constants.CELL_SIDE;
                 ShowLine(matrix);
             }
-            if (HintUsed != null)
-            {
-                HintUsed(this, EventArgs.Empty);
-            }
+            ProcessHintUsed();
             return matrix;
         }
 
@@ -109,11 +96,19 @@ namespace BlueboxBack.Utilities
                 matrix.HighlightedCol = x / Constants.CELL_SIDE;
                 ShowLine(matrix);
             }
+            ProcessHintUsed();
+            return matrix;
+        }
+        private void ProcessHintUsed()
+        {
+            if (HintsLeft > 0 && Settings.Default.ShowLines)
+            {
+                HintsLeft--;
+            }
             if (HintUsed != null)
             {
-                HintUsed(this, EventArgs.Empty);
+                HintUsed(this, new HintUsedEventArgs() { HintsLeft = HintsLeft});
             }
-            return matrix;
         }
 
         private DataMatrix CalculateGridClicked(DataMatrix matrix, ActionTypes actionType, int x, int y)
@@ -129,7 +124,7 @@ namespace BlueboxBack.Utilities
         }
         private void ShowLine(DataMatrix matrix)
         {
-            if(hintsLeft <= 0 || !Settings.Default.ShowLines)
+            if(HintsLeft <= 0 || !Settings.Default.ShowLines)
             {
                 MessageBox.Show("Извините, подсказок больше нет.");
                 return;
