@@ -72,53 +72,60 @@ namespace BlueboxBack.UI
             UpdateHintsLeftText(dataHandler.Manager.HintsLeft);
         }
 
-        private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Dispose();
         }
 
-        private void easyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void easyLevelMenuItem_Click(object sender, EventArgs e)
         {
             Settings.Default.MatrixSize = Constants.MATRIX_SIZE_EASY;
-            Settings.Default.IsEasyGame = !Settings.Default.IsEasyGame;
+            Settings.Default.IsEasyGame = true;
             Settings.Default.IsMediumGame = false;
-            this.mediumToolStripMenuItem.Checked = false;
             Settings.Default.IsHardGame = false;
-            this.difficultToolStripMenuItem.Checked = false;
+            UpdateLevelsCheckboxes();
             dataHandler.GenerateNewSolution();
         }
 
-        private void mediumToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mediumLevelMenuItem_Click(object sender, EventArgs e)
         {
             Settings.Default.MatrixSize = Constants.MATRIX_SIZE_MEDIUM;
             Settings.Default.IsEasyGame = false;
-            this.easyToolStripMenuItem.Checked = false;
-            Settings.Default.IsMediumGame = !Settings.Default.IsMediumGame;
+            Settings.Default.IsMediumGame = true;
             Settings.Default.IsHardGame = false;
-            this.difficultToolStripMenuItem.Checked = false;
+            UpdateLevelsCheckboxes();
             dataHandler.GenerateNewSolution();
         }
 
-        private void difficultToolStripMenuItem_Click(object sender, EventArgs e)
+        private void hardLevelMenuItem_Click(object sender, EventArgs e)
         {
             Settings.Default.MatrixSize = Constants.MATRIX_SIZE_MASTER;
             Settings.Default.IsEasyGame = false;
-            this.easyToolStripMenuItem.Checked = false;
             Settings.Default.IsMediumGame = false;
-            this.mediumToolStripMenuItem.Checked = false;
-            Settings.Default.IsHardGame = !Settings.Default.IsHardGame;
+            Settings.Default.IsHardGame = true;
+            UpdateLevelsCheckboxes();
             dataHandler.GenerateNewSolution();
         }
         private void showLinesToolStripMenuItem_CheckedChanged(object sender, System.EventArgs e)
         {
-            Settings.Default.ShowLines = !Settings.Default.ShowLines;
+            Settings.Default.ShowLines = this.showLinesToolStripMenuItem.Checked;
             hintsLeftLabel.Visible = Settings.Default.ShowLines;
             dataHandler.Refresh();
         }
         private void highlightHeadersToolStripMenuItem_CheckedChanged(object sender, System.EventArgs e)
         {
-            Settings.Default.HighlightHeaders = !Settings.Default.HighlightHeaders;
+            Settings.Default.HighlightHeaders = this.highlightHeadersToolStripMenuItem.Checked;
             dataHandler.Refresh();
+        }
+        void UpdateLevelsCheckboxes()
+        {
+            this.easyLevelMenuItem.Checked = Settings.Default.IsEasyGame;
+            this.mediumLevelMenuItem.Checked = Settings.Default.IsMediumGame;
+            this.hardLevelMenuItem.Checked = Settings.Default.IsHardGame;
+        }
+        void MainPage_Disposed(object sender, System.EventArgs e)
+        {
+            Settings.Default.Save();
         }
     }
 }

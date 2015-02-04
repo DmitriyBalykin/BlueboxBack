@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("BlueboxBack")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DDGroup")]
+[assembly: AssemblyCompany("HomeDevGroup")]
 [assembly: AssemblyProduct("BlueboxBack")]
-[assembly: AssemblyCopyright("Copyright © DDGroup 2015")]
+[assembly: AssemblyCopyright("Copyright © HomeDevGroup 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -68,6 +68,10 @@ namespace BlueboxBack.UI.Components
 
         void Box_MouseMove(object sender, MouseEventArgs e)
         {
+            if(type != BoxTypes.Grid)
+            {
+                return;
+            }
             MouseEventArgs args = e as MouseEventArgs;
             if (MousePressed && args != null)
             {
