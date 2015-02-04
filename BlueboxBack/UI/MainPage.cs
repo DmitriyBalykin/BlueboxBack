@@ -69,6 +69,7 @@ namespace BlueboxBack.UI
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dataHandler.GenerateNewSolution();
+            UpdateHintsLeftText(dataHandler.Manager.HintsLeft);
         }
 
         private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
