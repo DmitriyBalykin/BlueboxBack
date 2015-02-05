@@ -45,6 +45,10 @@ namespace BlueboxBack.Utilities
                 {
                     ResultPublished(this, new DataUpdatedEventArgs(dataMatrix, solutionMatrix, ResultEvent.ResultType.Correct));
                 }
+                else if(dataMatrix.IsEquivalent(solutionMatrix))
+                {
+                    ResultPublished(this, new DataUpdatedEventArgs(dataMatrix, solutionMatrix, ResultEvent.ResultType.Alternative));
+                }
                 else
                 {
                     ResultPublished(this, new DataUpdatedEventArgs(dataMatrix, solutionMatrix, ResultEvent.ResultType.Incorrect));
@@ -112,7 +116,8 @@ namespace BlueboxBack.Utilities
         {
             HintsLeft = Constants.HINTS_NUMBER;
             dataMatrix = new DataMatrix(Settings.Default.MatrixSize, Settings.Default.MatrixSize);
-            solutionMatrix = RandomMatrixGenerator.GetRandomMatrix(Settings.Default.MatrixSize, Settings.Default.MatrixSize);
+            solutionMatrix = RandomMatrixGenerator.GetMatrix(Settings.Default.MatrixSize, Settings.Default.MatrixSize);
+            //solutionMatrix = TestMatrixGenerator.GetMatrix(Settings.Default.MatrixSize, Settings.Default.MatrixSize);
         }
 
         private DataMatrix CalculateLeftHeaderClicked(DataMatrix matrix, ActionTypes actionTypes, int x, int y)

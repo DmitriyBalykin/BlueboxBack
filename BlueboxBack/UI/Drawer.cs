@@ -78,6 +78,9 @@ namespace BlueboxBack.UI
                 case ResultEvent.ResultType.Incorrect:
                     FilledBrush = BasicTheme.FilledBrushIncorrectResult;
                     break;
+                case ResultEvent.ResultType.Alternative:
+                    FilledBrush = BasicTheme.FilledBrushAlternativeResult;
+                    break;
                 case ResultEvent.ResultType.Unpublished:
                     FilledBrush = BasicTheme.FilledBrushDefault;
                     break;

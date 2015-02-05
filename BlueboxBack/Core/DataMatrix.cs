@@ -7,8 +7,8 @@ namespace BlueboxBack.Core
 {
     class DataMatrix : IEnumerable
     {
-        public short Width;
-        public short Height;
+        public int Width;
+        public int Height;
 
         private int? higlightedRow;
         public int? HighlightedRow
@@ -37,29 +37,24 @@ namespace BlueboxBack.Core
             }
         }
         private Element[,] matrixArray;
-        public DataMatrix(short width, short height)
+        public DataMatrix(int width, int height, Element.ElementType type)
         {
             this.Width = width;
             this.Height = height;
             matrixArray = new Element[width, height];
 
-            InitializeMatrix();
+            InitializeMatrix(type);
         }
         public DataMatrix(int width, int height)
-        {
-            this.Width = (short)width;
-            this.Height = (short)height;
-            matrixArray = new Element[width, height];
-
-            InitializeMatrix();
-        }
-        private void InitializeMatrix()
+            : this(width, height, Element.ElementType.Undefined)
+        {}
+        private void InitializeMatrix(Element.ElementType type)
         {
             for (int i = 0; i < Width; i++)
             {
                 for (int j = 0; j < Width; j++)
                 {
-                    matrixArray[i, j] = new Element(Element.ElementType.Undefined);
+                    matrixArray[i, j] = new Element(type);
                 }
             }
         }
@@ -93,7 +88,7 @@ namespace BlueboxBack.Core
 
         public static bool operator !=(DataMatrix m1, DataMatrix m2)
         {
-            return m1.matrixArray != m2.matrixArray;
+            return m1 != m2;
         }
         public IEnumerator GetEnumerator()
         { 
@@ -180,6 +175,27 @@ namespace BlueboxBack.Core
             List<CellsBlock> list = GetCountersList(nrow, ncol);
             list.Reverse();
             return list;
+        }
+
+        internal bool IsEquivalent(DataMatrix solutionMatrix)
+        {
+            for(int i = 0; i < Width; i++)
+            {
+                List<CellsBlock> current = GetCountersListSorted(i, null);
+                List<CellsBlock> target = solutionMatrix.GetCountersListSorted(i, null);
+                if(current.Count != target.Count)
+                {
+                    return false;
+                }
+                for (int j = 0; j < current.Count; j++)
+                {
+                    if (current[j].Length != target[j].Length)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

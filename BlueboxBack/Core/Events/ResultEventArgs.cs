@@ -10,6 +10,7 @@ namespace BlueboxBack.Core
         { 
             Correct,
             Incorrect,
+            Alternative,
             Unpublished
         }
         public ResultEvent(ResultType result)

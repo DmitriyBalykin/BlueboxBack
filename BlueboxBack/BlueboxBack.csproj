@@ -94,6 +94,7 @@
     <Compile Include="UI\Drawer.cs" />
     <Compile Include="Utilities\MatrixManager.cs" />
     <Compile Include="Utilities\RandomMatrixGenerator.cs" />
+    <Compile Include="Utilities\TestMatrixGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
