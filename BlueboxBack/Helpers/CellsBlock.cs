@@ -17,6 +17,8 @@ namespace BlueboxBack.Helpers
         public int Length { get; set; }
         public int StartPosition { get; set; }
         public bool IsOpened { get; set; }
+        private bool isActive = true;
+        public bool NotCounted { get { return isActive; } set { isActive = value; } }
         public int CompareTo(object obj)
         {
             CellsBlock block = obj as CellsBlock;

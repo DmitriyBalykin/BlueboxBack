@@ -56,7 +56,8 @@ namespace BlueboxBack.Utilities
         public static List<CellsBlock> CheckForOpenedBlocks(DataMatrix dataMatrix, DataMatrix solutionMatrix, int? row, int? col)
         {
             List<CellsBlock> dataList = solutionMatrix.GetCountersList(row, col);
-            dataList.ForEach(block => CheckBlockOpened(row, col, block, dataMatrix));
+            List<CellsBlock> checkList = dataMatrix.GetCountersList(row, col);
+            dataList.ForEach(block => CheckBlockOpened(row, col, block, checkList, dataMatrix));
             return dataList;
         }
         public static List<CellsBlock> GetLineHeaders(DataMatrix dataMatrix, DataMatrix solutionMatrix, int? row, int? col)
@@ -69,19 +70,16 @@ namespace BlueboxBack.Utilities
             list.Reverse();
             return list;
         }
-        public static void CheckBlockOpened(int? row, int? col, CellsBlock block, DataMatrix matrixToCompare)
+        public static void CheckBlockOpened(int? row, int? col, CellsBlock block, List<CellsBlock> checkList, DataMatrix dataMatrix)
         {
-            List<CellsBlock> referenceList = matrixToCompare.GetCountersListReversed(row, col);
-            foreach (CellsBlock refBlock in referenceList)
+            foreach (CellsBlock checkBlock in checkList)
             {
-                bool startCleared = IsElementCleared(row, col, (block.StartPosition - 1), matrixToCompare);
-                bool endCleared = IsElementCleared(row, col, (block.StartPosition + block.Length), matrixToCompare);
-                if (
-                    refBlock.StartPosition == block.StartPosition && startCleared &&
-                    refBlock.Length == block.Length && endCleared
-                    )
+                bool startCleared = IsElementCleared(row, col, (checkBlock.StartPosition - 1), dataMatrix);
+                bool endCleared = IsElementCleared(row, col, (checkBlock.StartPosition + checkBlock.Length), dataMatrix);
+                if (checkBlock.NotCounted && startCleared && endCleared && checkBlock.Length == block.Length)
                 {
                     block.IsOpened = true;
+                    checkBlock.NotCounted = false;
                     return;
                 }
             }
