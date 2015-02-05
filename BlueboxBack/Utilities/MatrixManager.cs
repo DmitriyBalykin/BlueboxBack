@@ -53,25 +53,41 @@ namespace BlueboxBack.Utilities
 
             return dataMatrix;
         }
-
-        public static bool IsBlockOpened(short? i, short? j, CellsBlock block, DataMatrix matrixToCompare)
+        public static List<CellsBlock> CheckForOpenedBlocks(DataMatrix dataMatrix, DataMatrix solutionMatrix, int? row, int? col)
         {
-            List<CellsBlock> referenceList = matrixToCompare.GetCountersListReversed(i, j);
+            List<CellsBlock> dataList = solutionMatrix.GetCountersList(row, col);
+            dataList.ForEach(block => CheckBlockOpened(row, col, block, dataMatrix));
+            return dataList;
+        }
+        public static List<CellsBlock> GetLineHeaders(DataMatrix dataMatrix, DataMatrix solutionMatrix, int? row, int? col)
+        {
+            List<CellsBlock> list = CheckForOpenedBlocks(dataMatrix, solutionMatrix, row, col);
+            if(!Settings.Default.SaveOrder)
+            {
+                list.Sort();
+            }
+            list.Reverse();
+            return list;
+        }
+        public static void CheckBlockOpened(int? row, int? col, CellsBlock block, DataMatrix matrixToCompare)
+        {
+            List<CellsBlock> referenceList = matrixToCompare.GetCountersListReversed(row, col);
             foreach (CellsBlock refBlock in referenceList)
             {
-                bool startCleared = IsElementCleared(i, j, (block.StartPosition - 1), matrixToCompare);
-                bool endCleared = IsElementCleared(i, j, (block.StartPosition + block.Length), matrixToCompare);
+                bool startCleared = IsElementCleared(row, col, (block.StartPosition - 1), matrixToCompare);
+                bool endCleared = IsElementCleared(row, col, (block.StartPosition + block.Length), matrixToCompare);
                 if (
                     refBlock.StartPosition == block.StartPosition && startCleared &&
                     refBlock.Length == block.Length && endCleared
                     )
                 {
-                    return true;
+                    block.IsOpened = true;
+                    return;
                 }
             }
-            return false;
+            block.IsOpened = false;
         }
-        private static bool IsElementCleared(short? row, short? col, int pos, DataMatrix matrix)
+        private static bool IsElementCleared(int? row, int? col, int pos, DataMatrix matrix)
         {
             int colInt = col ?? 0;
             int rowInt = row ?? 0;

@@ -37,6 +37,7 @@ namespace BlueboxBack.UI
             this.additionalHintsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.highlightHeadersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveHeaderOrderMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.levelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.easyLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mediumLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,7 +84,8 @@ namespace BlueboxBack.UI
             // 
             this.additionalHintsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showLinesToolStripMenuItem,
-            this.highlightHeadersToolStripMenuItem});
+            this.highlightHeadersToolStripMenuItem,
+            this.saveHeaderOrderMenuItem});
             this.additionalHintsToolStripMenuItem.Name = "additionalHintsToolStripMenuItem";
             this.additionalHintsToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.additionalHintsToolStripMenuItem.Text = "Дополнительные подсказки";
@@ -92,8 +94,9 @@ namespace BlueboxBack.UI
             // 
             this.showLinesToolStripMenuItem.Checked = global::BlueboxBack.Properties.Settings.Default.ShowLines;
             this.showLinesToolStripMenuItem.CheckOnClick = true;
+            this.showLinesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showLinesToolStripMenuItem.Name = "showLinesToolStripMenuItem";
-            this.showLinesToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.showLinesToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.showLinesToolStripMenuItem.Text = "Показывать строки";
             this.showLinesToolStripMenuItem.CheckedChanged += new System.EventHandler(this.showLinesToolStripMenuItem_CheckedChanged);
             // 
@@ -102,9 +105,18 @@ namespace BlueboxBack.UI
             this.highlightHeadersToolStripMenuItem.Checked = global::BlueboxBack.Properties.Settings.Default.HighlightHeaders;
             this.highlightHeadersToolStripMenuItem.CheckOnClick = true;
             this.highlightHeadersToolStripMenuItem.Name = "highlightHeadersToolStripMenuItem";
-            this.highlightHeadersToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.highlightHeadersToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.highlightHeadersToolStripMenuItem.Text = "Подсвечивать заголовки";
             this.highlightHeadersToolStripMenuItem.CheckedChanged += new System.EventHandler(this.highlightHeadersToolStripMenuItem_CheckedChanged);
+            // 
+            // saveHeaderOrderMenuItem
+            // 
+            this.saveHeaderOrderMenuItem.Checked = global::BlueboxBack.Properties.Settings.Default.SaveOrder;
+            this.saveHeaderOrderMenuItem.CheckOnClick = true;
+            this.saveHeaderOrderMenuItem.Name = "saveHeaderOrderMenuItem";
+            this.saveHeaderOrderMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.saveHeaderOrderMenuItem.Text = "Сохранять порядок в заголовке";
+            this.saveHeaderOrderMenuItem.CheckedChanged += new System.EventHandler(this.saveHeaderOrderMenuItem_CheckedChanged);
             // 
             // levelToolStripMenuItem
             // 
@@ -118,25 +130,22 @@ namespace BlueboxBack.UI
             // 
             // easyLevelMenuItem
             // 
-            this.easyLevelMenuItem.Checked = global::BlueboxBack.Properties.Settings.Default.IsEasyGame;
             this.easyLevelMenuItem.Name = "easyLevelMenuItem";
-            this.easyLevelMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.easyLevelMenuItem.Size = new System.Drawing.Size(124, 22);
             this.easyLevelMenuItem.Text = "Легкая";
             this.easyLevelMenuItem.Click += new System.EventHandler(this.easyLevelMenuItem_Click);
             // 
             // mediumLevelMenuItem
             // 
-            this.mediumLevelMenuItem.Checked = global::BlueboxBack.Properties.Settings.Default.IsMediumGame;
             this.mediumLevelMenuItem.Name = "mediumLevelMenuItem";
-            this.mediumLevelMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mediumLevelMenuItem.Size = new System.Drawing.Size(124, 22);
             this.mediumLevelMenuItem.Text = "Средняя";
             this.mediumLevelMenuItem.Click += new System.EventHandler(this.mediumLevelMenuItem_Click);
             // 
             // hardLevelMenuItem
             // 
-            this.hardLevelMenuItem.Checked = global::BlueboxBack.Properties.Settings.Default.IsHardGame;
             this.hardLevelMenuItem.Name = "hardLevelMenuItem";
-            this.hardLevelMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hardLevelMenuItem.Size = new System.Drawing.Size(124, 22);
             this.hardLevelMenuItem.Text = "Сложная";
             this.hardLevelMenuItem.Click += new System.EventHandler(this.hardLevelMenuItem_Click);
             // 
@@ -198,7 +207,6 @@ namespace BlueboxBack.UI
             this.Name = "MainPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BlueboxBack";
-            this.Disposed += MainPage_Disposed;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -223,5 +231,6 @@ namespace BlueboxBack.UI
         private System.Windows.Forms.ToolStripMenuItem additionalHintsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showLinesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem highlightHeadersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveHeaderOrderMenuItem;
     }
 }

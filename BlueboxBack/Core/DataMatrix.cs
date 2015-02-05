@@ -119,11 +119,11 @@ namespace BlueboxBack.Core
             return false;
         }
 
-        public List<CellsBlock> GetCountersList(short? nrow, short? ncol)
+        public List<CellsBlock> GetCountersList(int? nrow, int? ncol)
         {
             List<CellsBlock> list = new List<CellsBlock>();
-            short limit = 0;
-            short row = 0, col = 0;
+            int limit = 0;
+            int row = 0, col = 0;
             if(ncol == null)
             {
                 row = nrow ?? 0;
@@ -168,14 +168,14 @@ namespace BlueboxBack.Core
             }
             return list;
         }
-        public List<CellsBlock> GetCountersListSorted(short? nrow, short? ncol)
+        public List<CellsBlock> GetCountersListSorted(int? nrow, int? ncol)
         {
             List<CellsBlock> list = GetCountersList(nrow, ncol);
             list.Sort();
             list.Reverse();
             return list;
         }
-        public List<CellsBlock> GetCountersListReversed(short? nrow, short? ncol)
+        public List<CellsBlock> GetCountersListReversed(int? nrow, int? ncol)
         {
             List<CellsBlock> list = GetCountersList(nrow, ncol);
             list.Reverse();

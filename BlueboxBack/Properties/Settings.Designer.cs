@@ -94,5 +94,17 @@ namespace BlueboxBack.Properties {
                 this["MatrixSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SaveOrder {
+            get {
+                return ((bool)(this["SaveOrder"]));
+            }
+            set {
+                this["SaveOrder"] = value;
+            }
+        }
     }
 }

@@ -88,7 +88,6 @@ namespace BlueboxBack.UI
         {
             FilledBrush = BasicTheme.FilledBrushDefault;
         }
-
         private static void DrawVerticalHeader(Graphics g, DataMatrix dataMatrix, DataMatrix solutionMatrix)
         {
             g.FillRectangle(HeaderBackground, g.ClipBounds);
@@ -96,19 +95,16 @@ namespace BlueboxBack.UI
             for (short i = 0; i < solutionMatrix.Height; i++)
             {
                 short j = Constants.HEADER_SIZING / 20;
-                foreach (CellsBlock block in solutionMatrix.GetCountersListReversed(i, null))
+                foreach (CellsBlock block in MatrixManager.GetLineHeaders(dataMatrix, solutionMatrix, i, null))
                 {
                     PointF point = new PointF((j - 1) * 20, i * Constants.CELL_SIDE + 2);
                     j--;
-                    g.DrawString(String.Format("{0,2}", block.Length), GetHeaderFont(null, i, block, dataMatrix), GetHeaderBrush(i, null, block, dataMatrix), point);
+                    DrawBlockCounter(g, block, point);
                 }
                 g.DrawString((i+1).ToString(), HeaderFont, Brushes.Blue, new PointF(3, i * Constants.CELL_SIDE + 2));
                 g.DrawLine(GetGridPen(i), 0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING, i * Constants.CELL_SIDE);
             }
         }
-
-
-
         private static void DrawHorizontalHeader(Graphics g, DataMatrix dataMatrix, DataMatrix solutionMatrix)
         {
             g.FillRectangle(HeaderBackground, g.ClipBounds);
@@ -116,17 +112,16 @@ namespace BlueboxBack.UI
             for (short i = 0; i < solutionMatrix.Width; i++)
             {
                 short j = Constants.HEADER_SIZING/20;
-                foreach (CellsBlock block in solutionMatrix.GetCountersListReversed(null, i))
+                foreach (CellsBlock block in MatrixManager.GetLineHeaders(dataMatrix, solutionMatrix, null, i))
                 {
                     PointF point = new PointF(i * Constants.CELL_SIDE, (j - 1) * 20);
                     j--;
-                    g.DrawString(String.Format("{0,2}  ", block.Length), GetHeaderFont(null, i, block, dataMatrix), GetHeaderBrush(null, i, block, dataMatrix), point);
+                    DrawBlockCounter(g, block, point);
                 }
                 g.DrawString((i+1).ToString(), HeaderFont, Brushes.Blue, new PointF(i * Constants.CELL_SIDE, 3));
                 g.DrawLine(GetGridPen(i), i * Constants.CELL_SIDE, 0, i * Constants.CELL_SIDE, Constants.HEADER_SIZING);
             }
         }
-
         private static void DrawGrid(Graphics g, DataMatrix matrix)
         {
             int side = Constants.CELL_SIDE;
@@ -153,6 +148,13 @@ namespace BlueboxBack.UI
                 horizLinesDrawn = true;
                 g.DrawLine(GetGridPen(i), i * side, 0, i * side, matrix.Height * side); //vertical line
             }
+        }
+        private static void DrawBlockCounter(Graphics g, CellsBlock block, PointF point)
+        {
+            Brush brush = null;
+            Font font = null;
+            GetHeaderStyle(block, out brush, out font);
+            g.DrawString(String.Format("{0,2}", block.Length), font, brush, point);
         }
 
         private static Brush GetCellBrush(Element element)
@@ -183,26 +185,17 @@ namespace BlueboxBack.UI
                 return GridPen;
             }
         }
-        private static Brush GetHeaderBrush(short? i, short? j, CellsBlock block, DataMatrix matrixToCompare)
+        private static void GetHeaderStyle(CellsBlock block, out Brush brush, out Font font)
         {
-            if (MatrixManager.IsBlockOpened(i, j, block, matrixToCompare) && Settings.Default.HighlightHeaders)
+            if (block.IsOpened && Settings.Default.HighlightHeaders)
             {
-                return BasicTheme.HeaderBrushHighlighted;
+                brush = BasicTheme.HeaderBrushHighlighted;
+                font = BasicTheme.HeaderFontHighlighted;
             }
             else
             {
-                return BasicTheme.HeaderBrush;
-            }
-        }
-        private static Font GetHeaderFont(short? i, short? j, CellsBlock block, DataMatrix matrixToCompare)
-        {
-            if (MatrixManager.IsBlockOpened(i, j, block, matrixToCompare) && Settings.Default.HighlightHeaders)
-            {
-                return BasicTheme.HeaderFontHighlighted;
-            }
-            else
-            {
-                return BasicTheme.HeaderFont;
+                brush = BasicTheme.HeaderBrush;
+                font = BasicTheme.HeaderFont;
             }
         }
     }

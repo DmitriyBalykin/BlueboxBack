@@ -47,7 +47,14 @@ namespace BlueboxBack.UI
             dataHandler.Refresh();
 
             dataHandler.Manager.HintUsed += Manager_HintUsed;
+            UpdateCheckboxes();
             UpdateHintsLeftText(dataHandler.Manager.HintsLeft);
+            this.Disposed += MainPage_Disposed;
+        }
+
+        void MainPage_Disposed(object sender, EventArgs e)
+        {
+            Settings.Default.Save();
         }
 
         void Manager_HintUsed(object sender, EventArgs e)
@@ -83,7 +90,7 @@ namespace BlueboxBack.UI
             Settings.Default.IsEasyGame = true;
             Settings.Default.IsMediumGame = false;
             Settings.Default.IsHardGame = false;
-            UpdateLevelsCheckboxes();
+            UpdateCheckboxes();
             dataHandler.GenerateNewSolution();
         }
 
@@ -93,7 +100,7 @@ namespace BlueboxBack.UI
             Settings.Default.IsEasyGame = false;
             Settings.Default.IsMediumGame = true;
             Settings.Default.IsHardGame = false;
-            UpdateLevelsCheckboxes();
+            UpdateCheckboxes();
             dataHandler.GenerateNewSolution();
         }
 
@@ -103,13 +110,14 @@ namespace BlueboxBack.UI
             Settings.Default.IsEasyGame = false;
             Settings.Default.IsMediumGame = false;
             Settings.Default.IsHardGame = true;
-            UpdateLevelsCheckboxes();
+            UpdateCheckboxes();
             dataHandler.GenerateNewSolution();
         }
         private void showLinesToolStripMenuItem_CheckedChanged(object sender, System.EventArgs e)
         {
             Settings.Default.ShowLines = this.showLinesToolStripMenuItem.Checked;
             hintsLeftLabel.Visible = Settings.Default.ShowLines;
+            UpdateHintsLeftText(dataHandler.Manager.HintsLeft);
             dataHandler.Refresh();
         }
         private void highlightHeadersToolStripMenuItem_CheckedChanged(object sender, System.EventArgs e)
@@ -117,15 +125,20 @@ namespace BlueboxBack.UI
             Settings.Default.HighlightHeaders = this.highlightHeadersToolStripMenuItem.Checked;
             dataHandler.Refresh();
         }
-        void UpdateLevelsCheckboxes()
+        void UpdateCheckboxes()
         {
             this.easyLevelMenuItem.Checked = Settings.Default.IsEasyGame;
             this.mediumLevelMenuItem.Checked = Settings.Default.IsMediumGame;
             this.hardLevelMenuItem.Checked = Settings.Default.IsHardGame;
+            this.highlightHeadersToolStripMenuItem.Checked = Settings.Default.HighlightHeaders;
+            this.showLinesToolStripMenuItem.Checked = Settings.Default.ShowLines;
+            this.saveHeaderOrderMenuItem.Checked = Settings.Default.SaveOrder;
         }
-        void MainPage_Disposed(object sender, System.EventArgs e)
+
+        private void saveHeaderOrderMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.Save();
+            Settings.Default.SaveOrder = this.saveHeaderOrderMenuItem.Checked;
+            dataHandler.Refresh();
         }
     }
 }
