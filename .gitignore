@@ -45,6 +45,8 @@ Temporary Items
 *.Cache
 BlueboxBack/obj
 BlueboxBack/bin
+UnitTests/obj
+UnitTests/bin
 BlueboxBack/Libs/D2DSharp
 BlueboxBack/Libs/BuildProcessTemplates
 *.exe
